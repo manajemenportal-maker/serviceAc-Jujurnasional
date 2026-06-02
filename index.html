@@ -1330,6 +1330,104 @@
       .form-headline .btn{width:100%}
     }
 
+  
+    .ksa-partner-3d{
+      width:170px;
+      height:92px;
+      margin:0 auto 14px;
+      border-radius:24px;
+      position:relative;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      color:#fff;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.34), rgba(255,255,255,0) 28%),
+        linear-gradient(145deg,#ff8fbd 0%,#e84c8b 48%,#8f2459 100%);
+      box-shadow:
+        0 18px 0 #6f1743,
+        0 24px 34px rgba(123,31,75,.32),
+        inset 0 2px 4px rgba(255,255,255,.45),
+        inset 0 -8px 14px rgba(80,10,45,.22);
+      transform:perspective(700px) rotateX(8deg);
+      border:1px solid rgba(255,255,255,.35);
+      overflow:hidden;
+    }
+    .ksa-partner-3d:before{
+      content:"";
+      position:absolute;
+      inset:8px 10px auto 10px;
+      height:28px;
+      border-radius:18px;
+      background:linear-gradient(180deg,rgba(255,255,255,.42),rgba(255,255,255,0));
+      pointer-events:none;
+    }
+    .ksa-partner-3d:after{
+      content:"✓";
+      position:absolute;
+      right:12px;
+      top:10px;
+      width:26px;
+      height:26px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:#fff;
+      color:#d8437f;
+      font-weight:1000;
+      box-shadow:0 6px 12px rgba(0,0,0,.16);
+    }
+    .ksa-partner-3d span{
+      display:block;
+      font-size:30px;
+      line-height:1;
+      font-weight:1000;
+      letter-spacing:-1px;
+      text-shadow:0 3px 0 rgba(75,11,45,.35);
+      margin-top:8px;
+    }
+    .ksa-partner-3d b{
+      display:block;
+      font-size:19px;
+      line-height:1;
+      font-weight:1000;
+      letter-spacing:.02em;
+      text-shadow:0 2px 0 rgba(75,11,45,.28);
+    }
+    .ksa-partner-3d small{
+      display:block;
+      font-size:10px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+      opacity:.92;
+      margin-top:4px;
+    }
+    .ksa-partner-3d:hover{
+      transform:perspective(700px) rotateX(8deg) translateY(-2px);
+      box-shadow:
+        0 20px 0 #6f1743,
+        0 28px 38px rgba(123,31,75,.36),
+        inset 0 2px 4px rgba(255,255,255,.45),
+        inset 0 -8px 14px rgba(80,10,45,.22);
+    }
+    @media(max-width:640px){
+      .ksa-partner-3d{
+        width:145px;
+        height:80px;
+        border-radius:20px;
+        box-shadow:
+          0 12px 0 #6f1743,
+          0 18px 28px rgba(123,31,75,.30),
+          inset 0 2px 4px rgba(255,255,255,.45),
+          inset 0 -8px 14px rgba(80,10,45,.22);
+      }
+      .ksa-partner-3d span{font-size:25px}
+      .ksa-partner-3d b{font-size:16px}
+      .ksa-partner-3d small{font-size:9px}
+    }
+
   </style>
 </head>
 <body>
@@ -1733,7 +1831,7 @@
     <section class="services" id="partner">
       <div class="wrap">
         <div class="section-title">
-          <img src="assets/ksa-ac-logo-icon.png" alt="KSA AC Partner" class="partner-logo-badge" />
+          <div class="ksa-partner-3d" aria-label="KSA Partner"><span>KSA</span><b>Partner</b><small>AC Network</small></div>
           <span class="small">Join Partner</span>
           <h2>Daftar sebagai Partner Teknisi AC Wilayah</h2>
           <p>Teknisi AC dapat bergabung sebagai partner PT KALIMAYA SURYA ALAM sesuai domisili. Order akan diarahkan berdasarkan kota, area kerja, kompetensi, pengalaman, dan kesiapan menerima pekerjaan.</p>
