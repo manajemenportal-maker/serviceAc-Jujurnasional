@@ -1934,6 +1934,69 @@
       background:#fff0f6!important;
     }
 
+  
+    .hero-order-card{
+      border:0!important;
+      cursor:pointer!important;
+      text-align:left!important;
+      color:#fff!important;
+      background:
+        radial-gradient(circle at 88% 18%, rgba(255,255,255,.34), transparent 22%),
+        linear-gradient(145deg,#ff8fbd 0%,#e84c8b 48%,#8f2459 100%)!important;
+      border-radius:24px!important;
+      box-shadow:
+        0 18px 0 #6f1743,
+        0 24px 42px rgba(123,31,75,.30),
+        inset 0 2px 4px rgba(255,255,255,.45),
+        inset 0 -8px 14px rgba(80,10,45,.18)!important;
+      padding:16px 18px!important;
+      min-width:260px;
+      transition:.18s ease;
+      font-family:inherit!important;
+    }
+    .hero-order-card b{
+      color:#fff!important;
+      text-shadow:0 3px 0 rgba(75,11,45,.28);
+    }
+    .hero-order-card span{
+      color:#fff!important;
+      display:block!important;
+      line-height:1.25!important;
+      font-weight:900!important;
+      margin-top:3px!important;
+    }
+    .hero-order-card small{
+      display:block;
+      margin-top:8px;
+      color:#fff4fb;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.02em;
+      line-height:1.25;
+    }
+    .hero-order-card:hover{
+      transform:translateY(-3px)!important;
+      box-shadow:
+        0 21px 0 #6f1743,
+        0 30px 48px rgba(123,31,75,.34),
+        inset 0 2px 4px rgba(255,255,255,.45),
+        inset 0 -8px 14px rgba(80,10,45,.18)!important;
+    }
+    .hero-order-card:active{
+      transform:translateY(5px)!important;
+      box-shadow:
+        0 10px 0 #6f1743,
+        0 16px 28px rgba(123,31,75,.28),
+        inset 0 2px 4px rgba(255,255,255,.45),
+        inset 0 -8px 14px rgba(80,10,45,.18)!important;
+    }
+    @media(max-width:640px){
+      .hero-order-card{
+        min-width:0;
+        width:92%;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2001,10 +2064,11 @@
             <div class="worker-body"></div>
             <div class="tool-icon">🔧</div>
           </div>
-          <div class="hero-coupon">
+          <button class="hero-coupon hero-order-card" type="button" id="heroFastHelpOrder">
             <b>Fast Help</b>
-            <span>Kirim order ke operator AC kami.</span>
-          </div>
+            <span>Klik untuk membuka Order Online dan kirim order ke operator AC kami.</span>
+            <small>Estimasi biaya otomatis • Bayar 100% sebelum teknisi berangkat</small>
+          </button>
         </div>
       </div>
     </section>
@@ -3497,6 +3561,27 @@
       document.addEventListener('DOMContentLoaded', ksaCheckFirebase);
     } else {
       ksaCheckFirebase();
+    }
+
+
+    const heroFastHelpOrder = document.getElementById('heroFastHelpOrder');
+    if(heroFastHelpOrder){
+      heroFastHelpOrder.addEventListener('click', function(){
+        const booking = document.getElementById('booking');
+        if(booking) booking.scrollIntoView({behavior:'smooth', block:'start'});
+        setTimeout(function(){
+          if(typeof openOrderFormBox === 'function'){
+            openOrderFormBox();
+          } else {
+            const form = document.getElementById('bookingForm');
+            if(form){
+              form.classList.remove('order-form-hidden');
+              form.classList.add('order-form-show');
+              form.scrollIntoView({behavior:'smooth', block:'start'});
+            }
+          }
+        }, 260);
+      });
     }
 
   </script>
