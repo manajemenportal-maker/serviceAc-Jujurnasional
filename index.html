@@ -1625,6 +1625,55 @@
       .estimate-grid{grid-template-columns:1fr}
     }
 
+  
+    .job-scroll{
+      max-height:230px;
+      overflow-y:auto;
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:8px;
+      background:#fff7fb;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:11px;
+      scrollbar-width:thin;
+    }
+    .job-scroll label{
+      display:flex;
+      align-items:flex-start;
+      gap:8px;
+      margin:0;
+      padding:10px;
+      background:#fff;
+      border:1px solid #f1c8da;
+      border-radius:12px;
+      color:var(--blue-dark);
+      font-size:13px;
+      font-weight:900;
+      cursor:pointer;
+      line-height:1.25;
+    }
+    .job-scroll input{
+      width:auto!important;
+      margin-top:2px;
+      accent-color:var(--red);
+      flex:0 0 auto;
+    }
+    .job-scroll label:hover{
+      border-color:#ff8fbd;
+      box-shadow:0 8px 18px rgba(216,67,127,.08);
+    }
+    .field-help{
+      display:block;
+      margin-top:6px;
+      color:#6d7d90;
+      font-weight:800;
+      font-size:12px;
+    }
+    @media(max-width:760px){
+      .job-scroll{grid-template-columns:1fr;max-height:270px}
+    }
+
   </style>
 </head>
 <body>
@@ -1884,18 +1933,31 @@
 
           <div class="row">
             <div>
-              <label>Jenis Keluhan / Rencana Service</label>
-              <select id="layananSelect" required>
-                <option value="survey">Survey / Diagnosa Keluhan AC</option>
-                <option value="cuci">Cuci AC Standard</option>
-                <option value="tidak_dingin">AC Tidak Dingin</option>
-                <option value="bocor">AC Bocor / Menetes</option>
-                <option value="freon">Cek / Tambah Freon</option>
-                <option value="bongkar_pasang">Bongkar Pasang / Relokasi AC</option>
-                <option value="sparepart">Ganti Sparepart AC</option>
-                <option value="maintenance">Maintenance AC Gedung / Banyak Unit</option>
-                <option value="hemat_listrik">Konsultasi Hemat Listrik AC 30-50%</option>
-              </select>
+              <label>Jenis Pekerjaan / Rencana Service <small style="color:#6d7d90;font-weight:800">(boleh pilih lebih dari satu)</small></label>
+              <div class="job-scroll" id="jobScroll">
+                <label><input type="checkbox" name="jobOrder" value="survey" checked /> Survey / Diagnosa Keluhan AC</label>
+                <label><input type="checkbox" name="jobOrder" value="cuci" /> Cuci AC Standard</label>
+                <label><input type="checkbox" name="jobOrder" value="cuci_besar" /> Cuci Besar / Deep Cleaning AC</label>
+                <label><input type="checkbox" name="jobOrder" value="tidak_dingin" /> AC Tidak Dingin</label>
+                <label><input type="checkbox" name="jobOrder" value="bocor" /> AC Bocor / Indoor Menetes</label>
+                <label><input type="checkbox" name="jobOrder" value="freon_cek" /> Cek Tekanan Freon</label>
+                <label><input type="checkbox" name="jobOrder" value="freon_tambah" /> Tambah Freon</label>
+                <label><input type="checkbox" name="jobOrder" value="bongkar" /> Bongkar AC</label>
+                <label><input type="checkbox" name="jobOrder" value="pasang" /> Pasang AC Baru</label>
+                <label><input type="checkbox" name="jobOrder" value="relokasi" /> Relokasi / Bongkar Pasang AC</label>
+                <label><input type="checkbox" name="jobOrder" value="pipa" /> Tambah / Ganti Pipa AC</label>
+                <label><input type="checkbox" name="jobOrder" value="bracket" /> Bracket Outdoor / Dudukan AC</label>
+                <label><input type="checkbox" name="jobOrder" value="kelistrikan" /> Perbaikan Kelistrikan AC</label>
+                <label><input type="checkbox" name="jobOrder" value="kapasitor" /> Ganti Kapasitor / Komponen Ringan</label>
+                <label><input type="checkbox" name="jobOrder" value="modul" /> Modul / PCB / Sensor AC</label>
+                <label><input type="checkbox" name="jobOrder" value="kipas" /> Fan Indoor / Outdoor Bermasalah</label>
+                <label><input type="checkbox" name="jobOrder" value="kompresor" /> Kompresor / Outdoor Tidak Hidup</label>
+                <label><input type="checkbox" name="jobOrder" value="inverter" /> Pemeriksaan AC Inverter</label>
+                <label><input type="checkbox" name="jobOrder" value="cassette" /> Service AC Cassette / Standing</label>
+                <label><input type="checkbox" name="jobOrder" value="maintenance" /> Maintenance AC Gedung / Banyak Unit</label>
+                <label><input type="checkbox" name="jobOrder" value="hemat_listrik" /> Konsultasi Hemat Listrik AC 30–50%</label>
+              </div>
+              <small class="field-help">Centang semua pekerjaan yang diperlukan. Estimasi akan dijumlahkan otomatis sesuai pilihan.</small>
             </div>
             <div>
               <label>Prioritas</label>
@@ -2554,16 +2616,30 @@
     }
 
 
+
+
     const servicePricing = {
-      survey: {label:'Survey / Diagnosa Keluhan AC', base: 85000, perUnit: 35000, note:'Biaya awal untuk kunjungan dan diagnosa. Jika dilanjutkan service, biaya pekerjaan akan diinformasikan teknisi.'},
-      cuci: {label:'Cuci AC Standard', base: 100000, perUnit: 75000, note:'Estimasi cuci AC standard per unit. Jika unit sangat kotor atau akses sulit, teknisi akan informasikan tambahan biaya.'},
-      tidak_dingin: {label:'AC Tidak Dingin', base: 125000, perUnit: 65000, note:'Estimasi pengecekan dan service awal. Tambah freon, sparepart, atau perbaikan bocor dihitung bila diperlukan.'},
-      bocor: {label:'AC Bocor / Menetes', base: 125000, perUnit: 70000, note:'Estimasi penanganan awal AC bocor/menetes. Jika perlu perbaikan drain, bongkar casing, atau sparepart, teknisi wajib konfirmasi tambahan.'},
-      freon: {label:'Cek / Tambah Freon', base: 175000, perUnit: 85000, note:'Estimasi cek tekanan dan tambah freon ringan. Jika terjadi kebocoran atau butuh las/perbaikan pipa, biaya tambahan akan dikonfirmasi.'},
-      bongkar_pasang: {label:'Bongkar Pasang / Relokasi AC', base: 350000, perUnit: 225000, note:'Estimasi bongkar pasang normal. Tambahan pipa, bracket, kabel, bobok tembok, atau akses sulit dihitung terpisah.'},
-      sparepart: {label:'Ganti Sparepart AC', base: 150000, perUnit: 75000, note:'Estimasi jasa pengecekan dan pemasangan. Harga sparepart mengikuti jenis kerusakan dan wajib dikonfirmasi sebelum dikerjakan.'},
-      maintenance: {label:'Maintenance AC Gedung / Banyak Unit', base: 250000, perUnit: 65000, note:'Estimasi awal untuk banyak unit. Harga final dapat dibuat paket berdasarkan jumlah unit dan jadwal maintenance.'},
-      hemat_listrik: {label:'Konsultasi Hemat Listrik AC 30-50%', base: 0, perUnit: 0, note:'Konsultasi awal gratis. Survey/audit lanjutan dan proposal efisiensi dihitung berdasarkan jumlah unit dan lokasi.'}
+      survey: {label:'Survey / Diagnosa Keluhan AC', base:85000, perUnit:35000, note:'Kunjungan dan diagnosa awal.'},
+      cuci: {label:'Cuci AC Standard', base:100000, perUnit:75000, note:'Pembersihan indoor/outdoor standard.'},
+      cuci_besar: {label:'Cuci Besar / Deep Cleaning AC', base:175000, perUnit:125000, note:'Untuk AC sangat kotor atau lama tidak diservice.'},
+      tidak_dingin: {label:'AC Tidak Dingin', base:125000, perUnit:65000, note:'Diagnosa performa dingin. Freon/sparepart dihitung bila perlu.'},
+      bocor: {label:'AC Bocor / Indoor Menetes', base:125000, perUnit:70000, note:'Penanganan awal indoor menetes dan jalur pembuangan.'},
+      freon_cek: {label:'Cek Tekanan Freon', base:100000, perUnit:50000, note:'Pengecekan tekanan freon dan indikasi kebocoran.'},
+      freon_tambah: {label:'Tambah Freon', base:175000, perUnit:85000, note:'Tambah freon ringan. Kebocoran/pipa dihitung terpisah.'},
+      bongkar: {label:'Bongkar AC', base:200000, perUnit:125000, note:'Bongkar unit AC dari lokasi lama.'},
+      pasang: {label:'Pasang AC Baru', base:275000, perUnit:175000, note:'Pasang AC normal. Pipa/bracket tambahan dihitung sesuai kondisi.'},
+      relokasi: {label:'Relokasi / Bongkar Pasang AC', base:350000, perUnit:225000, note:'Bongkar dan pasang kembali di titik baru.'},
+      pipa: {label:'Tambah / Ganti Pipa AC', base:125000, perUnit:75000, note:'Estimasi jasa. Material pipa dihitung sesuai meter aktual.'},
+      bracket: {label:'Bracket Outdoor / Dudukan AC', base:100000, perUnit:60000, note:'Jasa pemasangan bracket. Harga bracket/material menyesuaikan.'},
+      kelistrikan: {label:'Perbaikan Kelistrikan AC', base:150000, perUnit:75000, note:'Pengecekan jalur listrik, kabel, MCB, koneksi indoor/outdoor.'},
+      kapasitor: {label:'Ganti Kapasitor / Komponen Ringan', base:150000, perUnit:75000, note:'Jasa ganti komponen ringan. Harga sparepart dikonfirmasi.'},
+      modul: {label:'Modul / PCB / Sensor AC', base:200000, perUnit:100000, note:'Diagnosa modul/PCB/sensor. Sparepart mengikuti hasil pengecekan.'},
+      kipas: {label:'Fan Indoor / Outdoor Bermasalah', base:175000, perUnit:90000, note:'Pengecekan fan motor, blower, kapasitor dan jalur listrik.'},
+      kompresor: {label:'Kompresor / Outdoor Tidak Hidup', base:250000, perUnit:125000, note:'Diagnosa outdoor/kompresor. Penggantian besar dihitung terpisah.'},
+      inverter: {label:'Pemeriksaan AC Inverter', base:200000, perUnit:100000, note:'Diagnosa AC inverter dan error teknis.'},
+      cassette: {label:'Service AC Cassette / Standing', base:250000, perUnit:175000, note:'AC cassette/standing memiliki estimasi lebih tinggi karena akses dan kompleksitas.'},
+      maintenance: {label:'Maintenance AC Gedung / Banyak Unit', base:250000, perUnit:65000, note:'Estimasi awal untuk banyak unit. Dapat dibuat paket kontrak.'},
+      hemat_listrik: {label:'Konsultasi Hemat Listrik AC 30-50%', base:0, perUnit:0, note:'Konsultasi awal gratis. Survey/audit lanjutan berdasarkan lokasi.'}
     };
     const priorityPricing = {
       normal: {label:'Normal - Jadwalkan', fee:0},
@@ -2581,24 +2657,43 @@
     function formatRpOrder(n){
       return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n)||0);
     }
-
+    function selectedJobsOrder(){
+      return Array.from(document.querySelectorAll('input[name="jobOrder"]:checked')).map(x => x.value);
+    }
     function hitungEstimasiOrder(){
-      const serviceKey = document.getElementById('layananSelect')?.value || 'survey';
+      let jobs = selectedJobsOrder();
+      if(jobs.length === 0){
+        const survey = document.querySelector('input[name="jobOrder"][value="survey"]');
+        if(survey){ survey.checked = true; jobs = ['survey']; }
+      }
+      // If paid job selected, survey is treated as included, not double-charged.
+      const paidJobs = jobs.filter(j => j !== 'survey' && j !== 'hemat_listrik');
+      const chargeJobs = paidJobs.length ? paidJobs.concat(jobs.includes('hemat_listrik') ? ['hemat_listrik'] : []) : jobs;
+
       const prioritasKey = document.getElementById('prioritas')?.value || 'normal';
       const pkKey = document.getElementById('pkOrder')?.value || '1';
       const qty = Math.max(1, Number(document.getElementById('jumlahUnitOrder')?.value || 1));
 
-      const service = servicePricing[serviceKey] || servicePricing.survey;
       const priority = priorityPricing[prioritasKey] || priorityPricing.normal;
       const pk = pkPricing[pkKey] || pkPricing["1"];
 
-      const biayaLayanan = service.base + (Math.max(0, qty - 1) * service.perUnit);
+      let biayaLayanan = 0;
+      let labels = [];
+      let notes = [];
+      chargeJobs.forEach(key => {
+        const item = servicePricing[key];
+        if(!item) return;
+        labels.push(item.label);
+        notes.push('• ' + item.label + ': ' + item.note);
+        biayaLayanan += item.base + (Math.max(0, qty - 1) * item.perUnit);
+      });
+
       const biayaPrioritas = priority.fee;
-      const biayaPk = pk.fee * qty;
-      const biayaAdmin = serviceKey === 'hemat_listrik' ? 0 : platformAdminFee;
+      const biayaPk = chargeJobs.some(k => k !== 'hemat_listrik') ? pk.fee * qty : 0;
+      const biayaAdmin = chargeJobs.every(k => k === 'hemat_listrik') ? 0 : platformAdminFee;
       const total = biayaLayanan + biayaPrioritas + biayaPk + biayaAdmin;
 
-      const data = {serviceKey, prioritasKey, pkKey, qty, service, priority, pk, biayaLayanan, biayaPrioritas, biayaPk, biayaAdmin, total};
+      const data = {jobs: chargeJobs, labels, notes, prioritasKey, pkKey, qty, priority, pk, biayaLayanan, biayaPrioritas, biayaPk, biayaAdmin, total};
 
       const estimasiTotal = document.getElementById('estimasiTotal');
       const estimasiLayanan = document.getElementById('estimasiLayanan');
@@ -2612,12 +2707,19 @@
       if(estimasiPrioritas) estimasiPrioritas.textContent = formatRpOrder(biayaPrioritas);
       if(estimasiPk) estimasiPk.textContent = formatRpOrder(biayaPk);
       if(estimasiAdmin) estimasiAdmin.textContent = formatRpOrder(biayaAdmin);
-      if(estimasiCatatan) estimasiCatatan.textContent = service.note + ' Estimasi ini dihitung untuk ' + qty + ' unit AC kapasitas ' + pk.label + '.';
-
+      if(estimasiCatatan){
+        estimasiCatatan.textContent =
+          'Pekerjaan dipilih: ' + labels.join(', ') +
+          '. Estimasi untuk ' + qty + ' unit AC kapasitas ' + pk.label +
+          '. ' + notes.join(' ');
+      }
       return data;
     }
 
-    ['layananSelect','prioritas','pkOrder','jumlahUnitOrder'].forEach(id => {
+    document.querySelectorAll('input[name="jobOrder"]').forEach(el => {
+      el.addEventListener('change', hitungEstimasiOrder);
+    });
+    ['prioritas','pkOrder','jumlahUnitOrder'].forEach(id => {
       const el = document.getElementById(id);
       if(el) el.addEventListener('input', hitungEstimasiOrder);
       if(el) el.addEventListener('change', hitungEstimasiOrder);
@@ -2647,7 +2749,7 @@
           `Kota/Kabupaten: ${encodeURIComponent(kota)}%0A`+
           `Provinsi: ${encodeURIComponent(provinsi)}%0A`+
           `Alamat: ${encodeURIComponent(alamat)}%0A`+
-          `Layanan: ${encodeURIComponent(est.service.label)}%0A`+
+          `Pekerjaan Dipilih: ${encodeURIComponent(est.labels.join(', '))}%0A`+
           `Prioritas: ${encodeURIComponent(est.priority.label)}%0A`+
           `Jumlah Unit: ${encodeURIComponent(est.qty + ' unit')}%0A`+
           `Kapasitas AC: ${encodeURIComponent(est.pk.label)}%0A`+
