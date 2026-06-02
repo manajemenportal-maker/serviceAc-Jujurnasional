@@ -1490,6 +1490,141 @@
       }
     }
 
+  
+    .order-policy,
+    .payment-policy,
+    .estimate-box{
+      background:#fff7fb;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:15px;
+      color:var(--blue-dark);
+      box-shadow:0 8px 18px rgba(216,67,127,.06);
+    }
+    .order-policy b{
+      display:block;
+      color:var(--blue);
+      font-size:18px;
+      font-weight:1000;
+      margin-bottom:5px;
+    }
+    .order-policy span{
+      display:block;
+      font-size:13px;
+      font-weight:800;
+      color:#52697e;
+      margin-top:5px;
+    }
+    .estimate-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding-bottom:12px;
+      border-bottom:1px solid var(--line);
+      margin-bottom:12px;
+    }
+    .estimate-head b{
+      display:block;
+      color:var(--blue);
+      font-size:18px;
+      font-weight:1000;
+    }
+    .estimate-head span{
+      display:block;
+      color:#6d7d90;
+      font-size:12px;
+      font-weight:800;
+    }
+    .estimate-head strong{
+      color:var(--red);
+      font-size:clamp(24px,3vw,34px);
+      line-height:1;
+      font-weight:1000;
+      white-space:nowrap;
+    }
+    .estimate-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:8px;
+      margin-bottom:10px;
+    }
+    .estimate-grid div{
+      background:#fff;
+      border:1px solid #f1c8da;
+      border-radius:14px;
+      padding:10px;
+    }
+    .estimate-grid span{
+      display:block;
+      color:#6d7d90;
+      font-weight:800;
+      font-size:11px;
+      margin-bottom:3px;
+    }
+    .estimate-grid b{
+      display:block;
+      color:var(--blue-dark);
+      font-weight:1000;
+      font-size:14px;
+    }
+    .estimate-note{
+      background:#fff;
+      border:1px dashed #f1a2c5;
+      border-radius:14px;
+      padding:10px;
+    }
+    .estimate-note b{
+      color:var(--red);
+      font-weight:1000;
+      font-size:13px;
+    }
+    .estimate-note p{
+      margin:4px 0 0;
+      color:#52697e;
+      font-weight:800;
+      font-size:12.5px;
+    }
+    .payment-policy h3{
+      margin:0 0 8px;
+      color:var(--blue);
+      font-size:18px;
+      font-weight:1000;
+    }
+    .payment-policy ul{
+      margin:0 0 10px;
+      padding-left:20px;
+      color:#52697e;
+      font-size:13px;
+      font-weight:800;
+    }
+    .payment-policy li{margin:4px 0}
+    .agree-check{
+      display:flex!important;
+      align-items:flex-start;
+      gap:9px;
+      background:#fff;
+      border:1px solid #f1c8da;
+      border-radius:14px;
+      padding:11px;
+      color:var(--blue-dark)!important;
+      font-weight:900!important;
+      line-height:1.35;
+      cursor:pointer;
+    }
+    .agree-check input{
+      width:auto!important;
+      margin-top:3px;
+      accent-color:var(--red);
+    }
+    @media(max-width:760px){
+      .estimate-head{display:grid;text-align:center}
+      .estimate-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:480px){
+      .estimate-grid{grid-template-columns:1fr}
+    }
+
   </style>
 </head>
 <body>
@@ -1714,6 +1849,12 @@
         </div>
 
         <form class="form" id="bookingForm">
+          <div class="order-policy">
+            <b>Ketentuan Order Service AC</b>
+            <span>Estimasi biaya awal dihitung otomatis berdasarkan informasi yang disampaikan customer. Jika di lokasi ditemukan pekerjaan tambahan, teknisi wajib menyampaikan informasi tambahan biaya terlebih dahulu sebelum dikerjakan.</span>
+            <span><strong>Pembayaran 100% di muka</strong> wajib dilakukan sebelum teknisi berangkat ke lokasi.</span>
+          </div>
+
           <div class="row">
             <div>
               <label>Nama</label>
@@ -1724,31 +1865,7 @@
               <input id="wa" required placeholder="08xxxxxxxxxx" />
             </div>
           </div>
-          <div class="row">
-            <div>
-              <label>Jenis Layanan</label>
-              <select id="layananSelect">
-                <option>Service AC</option>
-                <option>Konsultasi Hemat Listrik AC 30-50%</option>
-                <option>Cuci AC</option>
-                <option>AC Tidak Dingin</option>
-                <option>AC Bocor / Menetes</option>
-                <option>Tambah / Cek Freon</option>
-                <option>Bongkar Pasang AC</option>
-                <option>Ganti Sparepart AC</option>
-                <option>Maintenance AC Gedung</option>
-                <option>Survey Kontrak Maintenance AC</option>
-              </select>
-            </div>
-            <div>
-              <label>Prioritas</label>
-              <select id="prioritas">
-                <option>Normal - Jadwalkan</option>
-                <option>Urgent - Hari ini</option>
-                <option>Emergency - Secepatnya</option>
-              </select>
-            </div>
-          </div>
+
           <div class="row">
             <div>
               <label>Kota / Kabupaten</label>
@@ -1759,15 +1876,96 @@
               <input id="provinsi" required placeholder="Contoh: DKI Jakarta, Jawa Barat" />
             </div>
           </div>
+
           <div>
             <label>Alamat Lokasi</label>
             <input id="alamat" required placeholder="Alamat lengkap / patokan" />
           </div>
-          <div>
-            <label>Keluhan / Kebutuhan</label>
-            <textarea id="keluhan" required placeholder="Contoh: pipa bocor, saluran mampet, AC tidak dingin, pompa air mati..."></textarea>
+
+          <div class="row">
+            <div>
+              <label>Jenis Keluhan / Rencana Service</label>
+              <select id="layananSelect" required>
+                <option value="survey">Survey / Diagnosa Keluhan AC</option>
+                <option value="cuci">Cuci AC Standard</option>
+                <option value="tidak_dingin">AC Tidak Dingin</option>
+                <option value="bocor">AC Bocor / Menetes</option>
+                <option value="freon">Cek / Tambah Freon</option>
+                <option value="bongkar_pasang">Bongkar Pasang / Relokasi AC</option>
+                <option value="sparepart">Ganti Sparepart AC</option>
+                <option value="maintenance">Maintenance AC Gedung / Banyak Unit</option>
+                <option value="hemat_listrik">Konsultasi Hemat Listrik AC 30-50%</option>
+              </select>
+            </div>
+            <div>
+              <label>Prioritas</label>
+              <select id="prioritas" required>
+                <option value="normal">Normal - Jadwalkan</option>
+                <option value="urgent">Urgent - Hari ini</option>
+                <option value="emergency">Emergency - Secepatnya</option>
+              </select>
+            </div>
           </div>
-          <button class="btn btn-red" type="submit">📅 Send Schedule Request</button>
+
+          <div class="row">
+            <div>
+              <label>Jumlah Unit AC</label>
+              <input id="jumlahUnitOrder" type="number" min="1" value="1" required />
+            </div>
+            <div>
+              <label>Kapasitas AC Dominan</label>
+              <select id="pkOrder" required>
+                <option value="1">0.5 - 1 PK</option>
+                <option value="1.5">1.5 PK</option>
+                <option value="2">2 PK</option>
+                <option value="2.5">2.5 PK ke atas</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label>Detail Keluhan / Kebutuhan</label>
+            <textarea id="keluhan" required placeholder="Contoh: AC kamar tidak dingin, indoor menetes, outdoor mati, ingin cuci 3 unit AC, dll."></textarea>
+          </div>
+
+          <div class="estimate-box" id="estimateBox">
+            <div class="estimate-head">
+              <div>
+                <b>Estimasi Awal Order</b>
+                <span>Berdasarkan data yang diisi customer</span>
+              </div>
+              <strong id="estimasiTotal">Rp 0</strong>
+            </div>
+
+            <div class="estimate-grid">
+              <div><span>Biaya layanan</span><b id="estimasiLayanan">Rp 0</b></div>
+              <div><span>Prioritas</span><b id="estimasiPrioritas">Rp 0</b></div>
+              <div><span>Tambahan kapasitas</span><b id="estimasiPk">Rp 0</b></div>
+              <div><span>Admin platform</span><b id="estimasiAdmin">Rp 0</b></div>
+            </div>
+
+            <div class="estimate-note">
+              <b>Catatan Estimasi</b>
+              <p id="estimasiCatatan">Estimasi akan menyesuaikan jenis keluhan, jumlah unit, prioritas, dan kapasitas AC.</p>
+            </div>
+          </div>
+
+          <div class="payment-policy">
+            <h3>Syarat Pembayaran & Pembatalan</h3>
+            <ul>
+              <li>Customer wajib membayar <b>100% dari estimasi awal</b> sebelum teknisi berangkat.</li>
+              <li>Jika saat pengerjaan ditemukan keluhan/pekerjaan tambahan, teknisi wajib menyampaikan tambahan biaya terlebih dahulu kepada customer.</li>
+              <li>Jika order batal karena alasan kedaruratan yang dapat diterima, dana dikembalikan setelah dipotong <b>50%</b> dari dana yang sudah dibayarkan.</li>
+              <li>Jika order batal karena alasan yang tidak masuk akal, tidak jelas, atau tidak dapat diterima, dana <b>tidak dapat dikembalikan</b>.</li>
+              <li>Estimasi awal bukan harga final jika informasi awal tidak lengkap atau kondisi lapangan berbeda.</li>
+            </ul>
+            <label class="agree-check">
+              <input type="checkbox" id="setujuOrder" required />
+              Saya memahami estimasi awal, kewajiban bayar 100% sebelum teknisi berangkat, dan ketentuan pembatalan/refund.
+            </label>
+          </div>
+
+          <button class="btn btn-red" type="submit">Buat Order & Kirim Detail ke WhatsApp</button>
         </form>
       </div>
     </section>
@@ -2199,28 +2397,7 @@
     document.getElementById('hamb').addEventListener('click', () => navBar.classList.toggle('open'));
     document.querySelectorAll('.nav-bar a').forEach(a => a.addEventListener('click', () => navBar.classList.remove('open')));
 
-    document.getElementById('bookingForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      const nama = document.getElementById('nama').value.trim();
-      const wa = document.getElementById('wa').value.trim();
-      const layanan = document.getElementById('layananSelect').value;
-      const prioritas = document.getElementById('prioritas').value;
-      const kota = document.getElementById('kota').value.trim();
-      const provinsi = document.getElementById('provinsi').value.trim();
-      const alamat = document.getElementById('alamat').value.trim();
-      const keluhan = document.getElementById('keluhan').value.trim();
-      const text =
-        `Halo PT KALIMAYA SURYA ALAM, saya ingin schedule layanan.%0A%0A`+
-        `Nama: ${encodeURIComponent(nama)}%0A`+
-        `WhatsApp: ${encodeURIComponent(wa)}%0A`+
-        `Layanan: ${encodeURIComponent(layanan)}%0A`+
-        `Prioritas: ${encodeURIComponent(prioritas)}%0A`+
-        `Kota/Kabupaten: ${encodeURIComponent(kota)}%0A`+
-        `Provinsi: ${encodeURIComponent(provinsi)}%0A`+
-        `Alamat: ${encodeURIComponent(alamat)}%0A`+
-        `Keluhan: ${encodeURIComponent(keluhan)}`;
-      window.open(`https://wa.me/6281296629033?text=${text}`, '_blank');
-    });
+    
 
 
     const openPartnerForm = document.getElementById('openPartnerForm');
@@ -2374,6 +2551,118 @@
     const closeSavingCalculatorBottom = document.getElementById('closeSavingCalculatorBottom');
     if(closeSavingCalculatorBottom){
       closeSavingCalculatorBottom.addEventListener('click', closeSavingCalc);
+    }
+
+
+    const servicePricing = {
+      survey: {label:'Survey / Diagnosa Keluhan AC', base: 85000, perUnit: 35000, note:'Biaya awal untuk kunjungan dan diagnosa. Jika dilanjutkan service, biaya pekerjaan akan diinformasikan teknisi.'},
+      cuci: {label:'Cuci AC Standard', base: 100000, perUnit: 75000, note:'Estimasi cuci AC standard per unit. Jika unit sangat kotor atau akses sulit, teknisi akan informasikan tambahan biaya.'},
+      tidak_dingin: {label:'AC Tidak Dingin', base: 125000, perUnit: 65000, note:'Estimasi pengecekan dan service awal. Tambah freon, sparepart, atau perbaikan bocor dihitung bila diperlukan.'},
+      bocor: {label:'AC Bocor / Menetes', base: 125000, perUnit: 70000, note:'Estimasi penanganan awal AC bocor/menetes. Jika perlu perbaikan drain, bongkar casing, atau sparepart, teknisi wajib konfirmasi tambahan.'},
+      freon: {label:'Cek / Tambah Freon', base: 175000, perUnit: 85000, note:'Estimasi cek tekanan dan tambah freon ringan. Jika terjadi kebocoran atau butuh las/perbaikan pipa, biaya tambahan akan dikonfirmasi.'},
+      bongkar_pasang: {label:'Bongkar Pasang / Relokasi AC', base: 350000, perUnit: 225000, note:'Estimasi bongkar pasang normal. Tambahan pipa, bracket, kabel, bobok tembok, atau akses sulit dihitung terpisah.'},
+      sparepart: {label:'Ganti Sparepart AC', base: 150000, perUnit: 75000, note:'Estimasi jasa pengecekan dan pemasangan. Harga sparepart mengikuti jenis kerusakan dan wajib dikonfirmasi sebelum dikerjakan.'},
+      maintenance: {label:'Maintenance AC Gedung / Banyak Unit', base: 250000, perUnit: 65000, note:'Estimasi awal untuk banyak unit. Harga final dapat dibuat paket berdasarkan jumlah unit dan jadwal maintenance.'},
+      hemat_listrik: {label:'Konsultasi Hemat Listrik AC 30-50%', base: 0, perUnit: 0, note:'Konsultasi awal gratis. Survey/audit lanjutan dan proposal efisiensi dihitung berdasarkan jumlah unit dan lokasi.'}
+    };
+    const priorityPricing = {
+      normal: {label:'Normal - Jadwalkan', fee:0},
+      urgent: {label:'Urgent - Hari ini', fee:75000},
+      emergency: {label:'Emergency - Secepatnya', fee:150000}
+    };
+    const pkPricing = {
+      "1": {label:'0.5 - 1 PK', fee:0},
+      "1.5": {label:'1.5 PK', fee:25000},
+      "2": {label:'2 PK', fee:50000},
+      "2.5": {label:'2.5 PK ke atas', fee:100000}
+    };
+    const platformAdminFee = 15000;
+
+    function formatRpOrder(n){
+      return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n)||0);
+    }
+
+    function hitungEstimasiOrder(){
+      const serviceKey = document.getElementById('layananSelect')?.value || 'survey';
+      const prioritasKey = document.getElementById('prioritas')?.value || 'normal';
+      const pkKey = document.getElementById('pkOrder')?.value || '1';
+      const qty = Math.max(1, Number(document.getElementById('jumlahUnitOrder')?.value || 1));
+
+      const service = servicePricing[serviceKey] || servicePricing.survey;
+      const priority = priorityPricing[prioritasKey] || priorityPricing.normal;
+      const pk = pkPricing[pkKey] || pkPricing["1"];
+
+      const biayaLayanan = service.base + (Math.max(0, qty - 1) * service.perUnit);
+      const biayaPrioritas = priority.fee;
+      const biayaPk = pk.fee * qty;
+      const biayaAdmin = serviceKey === 'hemat_listrik' ? 0 : platformAdminFee;
+      const total = biayaLayanan + biayaPrioritas + biayaPk + biayaAdmin;
+
+      const data = {serviceKey, prioritasKey, pkKey, qty, service, priority, pk, biayaLayanan, biayaPrioritas, biayaPk, biayaAdmin, total};
+
+      const estimasiTotal = document.getElementById('estimasiTotal');
+      const estimasiLayanan = document.getElementById('estimasiLayanan');
+      const estimasiPrioritas = document.getElementById('estimasiPrioritas');
+      const estimasiPk = document.getElementById('estimasiPk');
+      const estimasiAdmin = document.getElementById('estimasiAdmin');
+      const estimasiCatatan = document.getElementById('estimasiCatatan');
+
+      if(estimasiTotal) estimasiTotal.textContent = formatRpOrder(total);
+      if(estimasiLayanan) estimasiLayanan.textContent = formatRpOrder(biayaLayanan);
+      if(estimasiPrioritas) estimasiPrioritas.textContent = formatRpOrder(biayaPrioritas);
+      if(estimasiPk) estimasiPk.textContent = formatRpOrder(biayaPk);
+      if(estimasiAdmin) estimasiAdmin.textContent = formatRpOrder(biayaAdmin);
+      if(estimasiCatatan) estimasiCatatan.textContent = service.note + ' Estimasi ini dihitung untuk ' + qty + ' unit AC kapasitas ' + pk.label + '.';
+
+      return data;
+    }
+
+    ['layananSelect','prioritas','pkOrder','jumlahUnitOrder'].forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.addEventListener('input', hitungEstimasiOrder);
+      if(el) el.addEventListener('change', hitungEstimasiOrder);
+    });
+    if(document.getElementById('bookingForm')) hitungEstimasiOrder();
+
+    const bookingForm = document.getElementById('bookingForm');
+    if(bookingForm){
+      bookingForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        const est = hitungEstimasiOrder();
+        const nama = document.getElementById('nama').value.trim();
+        const wa = document.getElementById('wa').value.trim();
+        const kota = document.getElementById('kota').value.trim();
+        const provinsi = document.getElementById('provinsi').value.trim();
+        const alamat = document.getElementById('alamat').value.trim();
+        const keluhan = document.getElementById('keluhan').value.trim();
+        const setuju = document.getElementById('setujuOrder').checked;
+        if(!setuju){
+          alert('Customer wajib menyetujui estimasi awal, pembayaran 100% di muka, dan ketentuan pembatalan/refund.');
+          return;
+        }
+        const msg =
+          `Halo PT KALIMAYA SURYA ALAM, saya ingin membuat order service AC.%0A%0A`+
+          `Nama: ${encodeURIComponent(nama)}%0A`+
+          `WhatsApp: ${encodeURIComponent(wa)}%0A`+
+          `Kota/Kabupaten: ${encodeURIComponent(kota)}%0A`+
+          `Provinsi: ${encodeURIComponent(provinsi)}%0A`+
+          `Alamat: ${encodeURIComponent(alamat)}%0A`+
+          `Layanan: ${encodeURIComponent(est.service.label)}%0A`+
+          `Prioritas: ${encodeURIComponent(est.priority.label)}%0A`+
+          `Jumlah Unit: ${encodeURIComponent(est.qty + ' unit')}%0A`+
+          `Kapasitas AC: ${encodeURIComponent(est.pk.label)}%0A`+
+          `Keluhan: ${encodeURIComponent(keluhan)}%0A%0A`+
+          `ESTIMASI AWAL:%0A`+
+          `Biaya Layanan: ${encodeURIComponent(formatRpOrder(est.biayaLayanan))}%0A`+
+          `Biaya Prioritas: ${encodeURIComponent(formatRpOrder(est.biayaPrioritas))}%0A`+
+          `Tambahan Kapasitas: ${encodeURIComponent(formatRpOrder(est.biayaPk))}%0A`+
+          `Admin Platform: ${encodeURIComponent(formatRpOrder(est.biayaAdmin))}%0A`+
+          `Total Estimasi: ${encodeURIComponent(formatRpOrder(est.total))}%0A%0A`+
+          `Saya memahami bahwa pembayaran 100% dari estimasi awal wajib dilakukan sebelum teknisi berangkat.%0A`+
+          `Jika ada pekerjaan tambahan di lokasi, teknisi wajib menyampaikan biaya tambahan terlebih dahulu.%0A`+
+          `Jika batal karena kedaruratan yang dapat diterima, refund dipotong 50%. Jika batal tanpa alasan yang masuk akal, dana tidak dapat dikembalikan.`;
+        window.open(`https://wa.me/6281296629033?text=${msg}`, '_blank');
+      });
     }
 
   </script>
