@@ -1925,6 +1925,15 @@
       .admin-shell{border-radius:20px}
     }
 
+  
+    .firebase-status{
+      border-left:7px solid #22b77a!important;
+    }
+    .firebase-status.error{
+      border-left-color:#e84c8b!important;
+      background:#fff0f6!important;
+    }
+
   </style>
 </head>
 <body>
@@ -2739,15 +2748,17 @@
             <div><b id="adminTotalRevenue">Rp 0</b><span>Total Estimasi Order</span></div>
             <div><b id="adminCityCount">0</b><span>Kota Terdata</span></div>
           </div>
+          <div class="admin-note firebase-status" id="adminFirebaseStatus"><b>Status Firebase:</b> Menghubungkan ke Firestore...</div>
           <div class="admin-note">
             <b>Catatan sistem:</b>
-            Data saat ini tersimpan di browser/localStorage. Untuk operasional nasional yang benar-benar online, panel ini siap disambungkan ke Firebase Firestore agar order dan partner masuk ke database pusat.
+            Data order dan partner sekarang disimpan ke Firebase Firestore bila koneksi tersedia, serta tetap dicadangkan ke browser/localStorage untuk keamanan demo.
           </div>
         </div>
 
         <div class="admin-content" id="admin-orders">
           <div class="admin-actions">
-            <button class="btn btn-blue" id="refreshOrdersBtn" type="button">Refresh Order</button>
+            <button class="btn btn-blue" id="refreshOrdersBtn" type="button">Refresh Order Lokal</button>
+            <button class="btn btn-red" id="syncOrdersFirebaseBtn" type="button">Tarik Order Firebase</button>
             <button class="btn btn-red" id="exportOrdersBtn" type="button">Export Order CSV</button>
             <button class="btn btn-blue" id="clearOrdersBtn" type="button">Hapus Data Order Lokal</button>
           </div>
@@ -2761,7 +2772,8 @@
 
         <div class="admin-content" id="admin-partners">
           <div class="admin-actions">
-            <button class="btn btn-blue" id="refreshPartnersBtn" type="button">Refresh Partner</button>
+            <button class="btn btn-blue" id="refreshPartnersBtn" type="button">Refresh Partner Lokal</button>
+            <button class="btn btn-red" id="syncPartnersFirebaseBtn" type="button">Tarik Partner Firebase</button>
             <button class="btn btn-red" id="exportPartnersBtn" type="button">Export Partner CSV</button>
             <button class="btn btn-blue" id="clearPartnersBtn" type="button">Hapus Data Partner Lokal</button>
           </div>
@@ -2817,6 +2829,34 @@
     <a href="tel:081296629033">Call Now</a>
     <a href="#booking">Order Online</a>
   </div>
+
+
+  <!-- Firebase SDK - PT KSA AC Nasional -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDfTbFVolL7nfJbgoZCcg9CCUGgyky073Q",
+      authDomain: "kalierp-d4905.firebaseapp.com",
+      projectId: "kalierp-d4905",
+      storageBucket: "kalierp-d4905.firebasestorage.app",
+      messagingSenderId: "549448963486",
+      appId: "1:549448963486:web:b2f3690cd509b87a72f28f",
+      measurementId: "G-9WD9SJGW3J"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    try { firebase.analytics(); } catch(e) { console.warn("Analytics tidak aktif:", e); }
+    const db = firebase.firestore();
+
+    const KSA_FIREBASE_READY = true;
+    const KSA_COLLECTIONS = {
+      orders: "ksa_ac_orders",
+      partners: "ksa_ac_partners",
+      settings: "ksa_ac_settings"
+    };
+  </script>
 
   <script>
     const navBar = document.getElementById('navBar');
@@ -2886,6 +2926,7 @@
         const rows = getPartnerRows();
         rows.push(data);
         setPartnerRows(rows);
+        ksaFirestoreAdd(KSA_COLLECTIONS.partners, data).then(id => { if(id) console.log('Partner tersimpan Firebase:', id); });
         result.hidden = false;
         result.textContent =
           'Pendaftaran partner teknisi AC berhasil disimpan.\\n\\n' +
@@ -3138,6 +3179,7 @@
         const orderRows = JSON.parse(localStorage.getItem('ksa_orders_ac') || '[]');
         orderRows.push(orderRecord);
         localStorage.setItem('ksa_orders_ac', JSON.stringify(orderRows));
+        ksaFirestoreAdd(KSA_COLLECTIONS.orders, orderRecord).then(id => { if(id) console.log('Order tersimpan Firebase:', id); });
 
         const msg =
           `Halo PT KALIMAYA SURYA ALAM, saya ingin membuat order service AC.%0A%0A`+
@@ -3194,6 +3236,64 @@
       });
     });
 
+
+
+    async function ksaFirestoreAdd(collectionName, payload){
+      if(typeof db === 'undefined') {
+        console.warn('Firestore belum tersedia, data hanya tersimpan lokal.');
+        return null;
+      }
+      try{
+        const clean = Object.assign({}, payload, {
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          source: 'website-ksa-ac-nasional'
+        });
+        const docRef = await db.collection(collectionName).add(clean);
+        return docRef.id;
+      }catch(err){
+        console.error('Gagal simpan Firestore:', err);
+        return null;
+      }
+    }
+
+    async function ksaFirestoreGet(collectionName, limitCount=200){
+      if(typeof db === 'undefined') return [];
+      try{
+        const snap = await db.collection(collectionName).orderBy('createdAt','desc').limit(limitCount).get();
+        return snap.docs.map(doc => {
+          const data = doc.data();
+          return Object.assign({firebase_id: doc.id}, data);
+        });
+      }catch(err){
+        console.error('Gagal ambil Firestore:', err);
+        alert('Gagal mengambil data Firebase. Cek koneksi atau Firestore rules.');
+        return [];
+      }
+    }
+
+    function ksaSetFirebaseStatus(ok, text){
+      const el = document.getElementById('adminFirebaseStatus');
+      if(!el) return;
+      el.classList.toggle('error', !ok);
+      el.innerHTML = '<b>Status Firebase:</b> ' + text;
+    }
+
+    async function ksaCheckFirebase(){
+      if(typeof db === 'undefined'){
+        ksaSetFirebaseStatus(false, 'Firebase belum tersedia. Data hanya tersimpan lokal.');
+        return;
+      }
+      try{
+        await db.collection(KSA_COLLECTIONS.settings).doc('connection_test').set({
+          checkedAt: firebase.firestore.FieldValue.serverTimestamp(),
+          app: 'ksa-ac-nasional'
+        }, {merge:true});
+        ksaSetFirebaseStatus(true, 'Terhubung ke Firestore project kalierp-d4905.');
+      }catch(err){
+        console.error(err);
+        ksaSetFirebaseStatus(false, 'Belum bisa write/read. Cek Firestore Rules.');
+      }
+    }
 
     const adminDefaultPin = '123456';
     function adminGetPin(){ return localStorage.getItem('ksa_admin_pin') || adminDefaultPin; }
@@ -3263,7 +3363,7 @@
       const rows = adminRows('ksa_orders_ac').slice().reverse();
       tbody.innerHTML = rows.length ? rows.map(o => `
         <tr>
-          <td>${o.tanggal||''}</td>
+          <td>${o.tanggal || (o.createdAt && o.createdAt.toDate ? o.createdAt.toDate().toLocaleString('id-ID') : '')}</td>
           <td>${o.nama||''}<br><small>${o.whatsapp||''}</small></td>
           <td>${o.kota||''}<br><small>${o.provinsi||''}</small></td>
           <td>${o.pekerjaan||''}</td>
@@ -3278,7 +3378,7 @@
       const rows = adminRows('ksa_partner_teknisi_ac').slice().reverse();
       tbody.innerHTML = rows.length ? rows.map(p => `
         <tr>
-          <td>${p.tanggal||''}</td>
+          <td>${p.tanggal || (p.createdAt && p.createdAt.toDate ? p.createdAt.toDate().toLocaleString('id-ID') : '')}</td>
           <td>${p.nama||''}</td>
           <td>${p.whatsapp||''}</td>
           <td>${p.kota||''}<br><small>${p.provinsi||''}</small></td>
@@ -3368,6 +3468,35 @@
         document.getElementById('adminLogin').hidden = false;
         document.getElementById('adminPin').value = '';
       });
+    }
+
+
+    async function adminSyncOrdersFirebase(){
+      const rows = await ksaFirestoreGet(KSA_COLLECTIONS.orders, 300);
+      if(!rows.length) return;
+      localStorage.setItem('ksa_orders_ac', JSON.stringify(rows));
+      adminRefreshAll();
+      alert('Order Firebase berhasil ditarik: ' + rows.length + ' data.');
+    }
+
+    async function adminSyncPartnersFirebase(){
+      const rows = await ksaFirestoreGet(KSA_COLLECTIONS.partners, 300);
+      if(!rows.length) return;
+      localStorage.setItem('ksa_partner_teknisi_ac', JSON.stringify(rows));
+      adminRefreshAll();
+      alert('Partner Firebase berhasil ditarik: ' + rows.length + ' data.');
+    }
+
+    const syncOrdersFirebaseBtn = document.getElementById('syncOrdersFirebaseBtn');
+    if(syncOrdersFirebaseBtn) syncOrdersFirebaseBtn.addEventListener('click', adminSyncOrdersFirebase);
+
+    const syncPartnersFirebaseBtn = document.getElementById('syncPartnersFirebaseBtn');
+    if(syncPartnersFirebaseBtn) syncPartnersFirebaseBtn.addEventListener('click', adminSyncPartnersFirebase);
+
+    if(document.readyState === 'loading'){
+      document.addEventListener('DOMContentLoaded', ksaCheckFirebase);
+    } else {
+      ksaCheckFirebase();
     }
 
   </script>
