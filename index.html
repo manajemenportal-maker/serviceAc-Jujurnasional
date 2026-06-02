@@ -1428,6 +1428,9 @@
       .ksa-partner-3d small{font-size:9px}
     }
 
+  
+    .calculator-box{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:start}.calc-panel,.calc-report{background:#fff;border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 12px 30px rgba(216,67,127,.10)}.calc-panel h3,.calc-report h3{color:var(--blue);font-size:22px;font-weight:1000;margin:0 0 12px}.unit-table{display:grid;gap:8px;margin-top:6px}.unit-head,.unit-row{display:grid;grid-template-columns:.65fr .75fr 1fr auto;gap:8px;align-items:center}.unit-head{color:var(--blue);font-weight:1000;font-size:13px;padding:0 4px}.unit-row{background:#fff7fb;border:1px solid var(--line);border-radius:16px;padding:8px}.unit-row input,.unit-row select{padding:9px 10px!important;border-radius:12px!important}.remove-unit{width:38px;height:38px;border-radius:12px;border:0;background:#ffe1ee;color:var(--red);font-weight:1000;cursor:pointer}.report-brand{display:inline-flex;background:#fff0f6;color:var(--red);border:1px solid var(--line);border-radius:999px;padding:7px 11px;font-weight:1000;font-size:12px;margin-bottom:10px}.report-sub{color:#6d7d90;font-weight:800;margin-top:-4px}.report-for{background:#fff7fb;border:1px solid var(--line);border-radius:18px;padding:14px;display:grid;gap:2px;margin:12px 0}.report-for b{color:var(--blue)}.report-for span{font-weight:1000;color:var(--blue-dark);font-size:18px}.report-for small{font-weight:800;color:#6d7d90}.report-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.report-grid div,.report-total div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;box-shadow:0 8px 18px rgba(216,67,127,.06)}.report-grid b,.report-total b{display:block;color:var(--red);font-size:22px;line-height:1.1;font-weight:1000}.report-grid span,.report-total span{display:block;color:var(--blue-dark);font-weight:900;font-size:13px;margin-top:4px}.report-total{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}.report-total small{display:block;color:#6d7d90;font-size:11px;font-weight:800;margin-top:4px}.saving-note.dark{color:#6d7d90!important;font-size:12px;text-align:left;margin:12px 0!important}@media(max-width:980px){.calculator-box{grid-template-columns:1fr}}@media(max-width:620px){.unit-head{display:none}.unit-row{grid-template-columns:1fr}.remove-unit{width:100%}.report-grid,.report-total{grid-template-columns:1fr}.calc-panel,.calc-report{padding:18px}}@media print{body *{visibility:hidden!important}#calcReport,#calcReport *{visibility:visible!important}#calcReport{position:absolute!important;left:0!important;top:0!important;width:100%!important;box-shadow:none!important;border:0!important}#calcReport .form-actions{display:none!important}}
+
   </style>
 </head>
 <body>
@@ -1823,7 +1826,40 @@
         <p class="saving-note">*Angka 30–50% adalah target/potensi penghematan dan tetap bergantung pada kapasitas AC, durasi pemakaian, kondisi unit, suhu ruangan, kebiasaan operasional dan hasil audit lapangan.</p>
 
         <div style="text-align:center;margin-top:22px">
-          <a class="btn btn-yellow" href="https://wa.me/6281296629033?text=Halo%20PT%20KALIMAYA%20SURYA%20ALAM%2C%20saya%20ingin%20konsultasi%20Layanan%20Hemat%20Listrik%20AC.%0ANama%3A%0AKota%2FKabupaten%3A%0AJumlah%20Unit%20AC%3A%0APK%20AC%3A%0AJam%20Operasional%3A%0ATagihan%20Listrik%20Per%20Bulan%3A" target="_blank" rel="noopener">⚡ Hitung Potensi Hemat 30–50%</a>
+          <button class="btn btn-yellow" type="button" onclick="document.getElementById('kalkulator-hemat').scrollIntoView({behavior:'smooth',block:'start'})">⚡ Hitung Potensi Hemat Sekarang</button>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="booking" id="kalkulator-hemat">
+      <div class="wrap">
+        <div class="section-title">
+          <span class="small">Self Assessment</span>
+          <h2>Kalkulator Estimasi Penghematan AC</h2>
+          <p>Isi parameter dasar untuk menghitung estimasi tagihan normal, potensi hemat 30–50%, pembagian manfaat, akumulasi 36 bulan, dan BEP proyek. Hitungan ini mengikuti struktur self-assessment Kalimaja Xtron.</p>
+        </div>
+        <div class="calculator-box">
+          <div class="calc-panel">
+            <h3>Identitas & Operasional</h3>
+            <div class="row"><div><label>Nama Bisnis / Lokasi</label><input id="calcNama" placeholder="Contoh: Klinik Sehat Sentosa" /></div><div><label>PIC / Kontak</label><input id="calcPic" placeholder="Nama PIC / nomor kontak" /></div></div>
+            <div class="row"><div><label>Jam Operasional AC / Hari</label><input id="calcJam" type="number" min="1" max="24" value="10" /></div><div><label>Hari Operasional / Bulan</label><input id="calcHari" type="number" min="1" max="31" value="26" /></div></div>
+            <div class="row"><div><label>Tarif Listrik / kWh</label><input id="calcTarif" type="number" min="1" value="1444" /></div><div><label>Target Hemat</label><select id="calcHemat"><option value="0.30">30%</option><option value="0.35" selected>35%</option><option value="0.40">40%</option><option value="0.45">45%</option><option value="0.50">50%</option></select></div></div>
+            <div class="row"><div><label>Harga Unit / Alat Efisiensi</label><input id="calcHargaUnit" type="number" min="0" value="3250000" /></div><div><label>Porsi Manfaat Klien</label><select id="calcPorsiKlien"><option value="0.30" selected>30% Klien / 70% Operator</option><option value="0.40">40% Klien / 60% Operator</option><option value="0.50">50% Klien / 50% Operator</option></select></div></div>
+            <h3>Daftar Unit AC</h3>
+            <div class="unit-table" id="unitTable"><div class="unit-head"><span>Qty</span><span>PK</span><span>Watt/Unit</span><span></span></div></div>
+            <div class="form-actions"><button class="btn btn-blue" type="button" id="addUnitBtn">+ Tambah Varian AC</button><button class="btn btn-red" type="button" id="calcBtn">Hitung Laporan Estimasi</button></div>
+          </div>
+          <div class="calc-report" id="calcReport">
+            <div class="report-brand">KSA AC • PT KALIMAYA SURYA ALAM</div>
+            <h3>Laporan Estimasi Efisiensi Energi</h3>
+            <p class="report-sub">Zero CAPEX • Simulasi awal • Bukan tagihan final</p>
+            <div class="report-for"><b>Disusun Untuk:</b><span id="rNama">-</span><small id="rPic">-</small></div>
+            <div class="report-grid"><div><b id="rUnit">0 Unit</b><span>Total Unit AC</span></div><div><b id="rOperasi">0 Jam / 0 Hari</b><span>Operasional</span></div><div><b id="rNormal">Rp 0</b><span>Tagihan Normal / Bulan</span></div><div><b id="rHemat">Rp 0</b><span>Potensi Hemat / Bulan</span></div><div><b id="rKlien">Rp 0</b><span>Manfaat Klien / Bulan</span></div><div><b id="rOperator">Rp 0</b><span>Revenue Operator / Bulan</span></div></div>
+            <div class="report-total"><div><span>Total Penghematan 36 Bulan</span><b id="rHemat36">Rp 0</b></div><div><span>Total Manfaat Klien 36 Bulan</span><b id="rKlien36">Rp 0</b></div><div><span>Nilai Investasi Alat</span><b id="rCapex">Rp 0</b><small>100% ditanggung operator / Zero CAPEX untuk klien</small></div><div><span>Payback / BEP</span><b id="rBep">0 Bulan</b><small>Berdasarkan total potensi hemat bulanan</small></div><div><span>Project ROI 36 Bulan</span><b id="rRoi">0%</b></div><div><span>Estimasi IRR Acuan</span><b id="rIrr">0%</b><small>Acuan sederhana: ROI tahunan rata-rata</small></div></div>
+            <p class="saving-note dark">Catatan: estimasi bergantung pada kondisi AC, daya aktual, jam operasi, suhu ruangan, tarif listrik, pola pemakaian, dan hasil audit lapangan.</p>
+            <div class="form-actions"><button class="btn btn-blue" type="button" id="printCalcBtn">Cetak / Simpan PDF</button><button class="btn btn-red" type="button" id="resetCalcBtn">Reset Hitungan</button></div>
+          </div>
         </div>
       </div>
     </section>
@@ -2217,6 +2253,17 @@
         URL.revokeObjectURL(url);
       });
     }
+
+
+    const pkDefaultWatts = {"0.5":400,"0.75":600,"1":800,"1.5":1200,"2":1600,"2.5":2000,"3":2400,"5":4000};
+    function rupiah(n){return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n)||0)}
+    function pct(n){return ((Number(n)||0)*100).toFixed(0)+'%'}
+    function addUnitRow(qty=1, pk="2", watt=null){const table=document.getElementById('unitTable'); if(!table)return; const row=document.createElement('div'); row.className='unit-row'; const wattVal=watt||pkDefaultWatts[pk]||1600; row.innerHTML=`<input class="unitQty" type="number" min="1" value="${qty}" aria-label="Jumlah unit AC" /><select class="unitPk" aria-label="PK AC">${Object.keys(pkDefaultWatts).map(k=>`<option value="${k}" ${k==pk?'selected':''}>${k} PK</option>`).join('')}</select><input class="unitWatt" type="number" min="1" value="${wattVal}" aria-label="Watt per unit" /><button class="remove-unit" type="button" aria-label="Hapus varian AC">×</button>`; table.appendChild(row); const pkSelect=row.querySelector('.unitPk'); const wattInput=row.querySelector('.unitWatt'); pkSelect.addEventListener('change',()=>wattInput.value=pkDefaultWatts[pkSelect.value]||wattInput.value); row.querySelector('.remove-unit').addEventListener('click',()=>{if(document.querySelectorAll('.unit-row').length>1)row.remove()});}
+    function calculateSaving(){const jam=Number(document.getElementById('calcJam')?.value||0), hari=Number(document.getElementById('calcHari')?.value||0), tarif=Number(document.getElementById('calcTarif')?.value||0), hematPct=Number(document.getElementById('calcHemat')?.value||.35), porsiKlien=Number(document.getElementById('calcPorsiKlien')?.value||.30), hargaUnit=Number(document.getElementById('calcHargaUnit')?.value||0); let totalUnit=0,totalKwh=0; document.querySelectorAll('.unit-row').forEach(row=>{const qty=Number(row.querySelector('.unitQty').value||0), watt=Number(row.querySelector('.unitWatt').value||0); totalUnit+=qty; totalKwh+=qty*(watt/1000)*jam*hari}); const normal=totalKwh*tarif, hemat=normal*hematPct, klien=hemat*porsiKlien, operator=hemat-klien, capex=totalUnit*hargaUnit, bep=hemat>0?capex/hemat:0, hemat36=hemat*36, klien36=klien*36, roi=capex>0?((hemat36-capex)/capex):0, irr=roi/3; document.getElementById('rNama').textContent=document.getElementById('calcNama')?.value||'-'; document.getElementById('rPic').textContent=document.getElementById('calcPic')?.value||'-'; document.getElementById('rUnit').textContent=totalUnit+' Unit'; document.getElementById('rOperasi').textContent=jam+' Jam / '+hari+' Hari'; document.getElementById('rNormal').textContent=rupiah(normal); document.getElementById('rHemat').textContent=rupiah(hemat)+' ('+pct(hematPct)+')'; document.getElementById('rKlien').textContent=rupiah(klien)+' ('+pct(porsiKlien)+')'; document.getElementById('rOperator').textContent=rupiah(operator)+' ('+pct(1-porsiKlien)+')'; document.getElementById('rHemat36').textContent=rupiah(hemat36); document.getElementById('rKlien36').textContent=rupiah(klien36); document.getElementById('rCapex').textContent=rupiah(capex); document.getElementById('rBep').textContent=(isFinite(bep)?bep.toFixed(1):'0')+' Bulan'; document.getElementById('rRoi').textContent=(roi*100).toFixed(0)+'%'; document.getElementById('rIrr').textContent=(irr*100).toFixed(0)+'%'}
+    const addUnitBtn=document.getElementById('addUnitBtn'); if(addUnitBtn){addUnitBtn.addEventListener('click',()=>addUnitRow(1,'2')); addUnitRow(5,'2'); addUnitRow(3,'1.5'); calculateSaving();}
+    const calcBtn=document.getElementById('calcBtn'); if(calcBtn)calcBtn.addEventListener('click',calculateSaving);
+    const printCalcBtn=document.getElementById('printCalcBtn'); if(printCalcBtn)printCalcBtn.addEventListener('click',()=>window.print());
+    const resetCalcBtn=document.getElementById('resetCalcBtn'); if(resetCalcBtn)resetCalcBtn.addEventListener('click',()=>{document.querySelectorAll('.unit-row').forEach(x=>x.remove()); addUnitRow(5,'2'); addUnitRow(3,'1.5'); calculateSaving();});
 
   </script>
 </body>
