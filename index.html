@@ -1674,6 +1674,35 @@
       .job-scroll{grid-template-columns:1fr;max-height:270px}
     }
 
+  
+    .order-form-hidden{
+      display:none!important;
+    }
+    #bookingForm.order-form-show{
+      display:grid!important;
+      animation:fadeDown .25s ease both;
+    }
+    .order-open-btn{
+      margin-top:14px;
+      width:100%;
+    }
+    .order-open-note{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:14px;
+      padding:10px 12px;
+      color:#d9ecff!important;
+      font-size:13px!important;
+      font-weight:800!important;
+      margin-top:10px!important;
+    }
+    .order-form-headline{
+      margin-bottom:2px;
+    }
+    @media(max-width:760px){
+      .order-open-btn{width:100%}
+    }
+
   </style>
 </head>
 <body>
@@ -1897,7 +1926,11 @@
           <div class="info-line"><span>🛠</span> Service AC • AC • Maintenance AC • Pompa</div>
         </div>
 
-        <form class="form" id="bookingForm">
+        <form class="form order-form-hidden" id="bookingForm">
+          <div class="form-headline order-form-headline">
+            <h3>Form Order Online Service AC</h3>
+            <button class="btn btn-blue small-btn" type="button" id="closeOrderForm">Tutup Form</button>
+          </div>
           <div class="order-policy">
             <b>Ketentuan Order Service AC</b>
             <span>Estimasi biaya awal dihitung otomatis berdasarkan informasi yang disampaikan customer. Jika di lokasi ditemukan pekerjaan tambahan, teknisi wajib menyampaikan informasi tambahan biaya terlebih dahulu sebelum dikerjakan.</span>
@@ -2766,6 +2799,36 @@
         window.open(`https://wa.me/6281296629033?text=${msg}`, '_blank');
       });
     }
+
+
+    function openOrderFormBox(){
+      const form = document.getElementById('bookingForm');
+      if(!form) return;
+      form.classList.remove('order-form-hidden');
+      form.classList.add('order-form-show');
+      form.scrollIntoView({behavior:'smooth', block:'start'});
+      if(typeof hitungEstimasiOrder === 'function') hitungEstimasiOrder();
+    }
+    function closeOrderFormBox(){
+      const form = document.getElementById('bookingForm');
+      if(!form) return;
+      form.classList.add('order-form-hidden');
+      form.classList.remove('order-form-show');
+      const booking = document.getElementById('booking');
+      if(booking) booking.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    const openOrderForm = document.getElementById('openOrderForm');
+    if(openOrderForm) openOrderForm.addEventListener('click', openOrderFormBox);
+    const closeOrderForm = document.getElementById('closeOrderForm');
+    if(closeOrderForm) closeOrderForm.addEventListener('click', closeOrderFormBox);
+    document.querySelectorAll('a[href="#booking"]').forEach(a => {
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        const booking = document.getElementById('booking');
+        if(booking) booking.scrollIntoView({behavior:'smooth', block:'start'});
+        setTimeout(openOrderFormBox, 260);
+      });
+    });
 
   </script>
 </body>
