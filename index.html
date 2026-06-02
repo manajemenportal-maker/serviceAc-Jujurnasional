@@ -1109,6 +1109,38 @@
       .booking-left,.form,.emergency-cta{padding:20px!important;}
     }
 
+  
+    .hemat-summary{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      position:relative;
+      z-index:2;
+    }
+    .hemat-summary div{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:18px;
+      padding:16px;
+    }
+    .hemat-summary b{
+      display:block;
+      color:#fff;
+      font-size:16px;
+      margin-bottom:5px;
+      font-weight:1000;
+    }
+    .hemat-summary span{
+      display:block;
+      color:#d7ecff;
+      font-weight:700;
+      font-size:14px;
+    }
+    @media(max-width:900px){
+      .hemat-summary{grid-template-columns:1fr}
+    }
+
   </style>
 </head>
 <body>
@@ -1142,7 +1174,7 @@
       <div class="wrap">
         <a href="#home">Home</a>
         <a href="#layanan">Service AC</a>
-        <a href="#hemat-listrik">Layanan Hemat Listrik AC</a>
+        <a href="#hemat-listrik">Hemat Listrik AC</a>
         <a href="#tentang">About Us</a>
         <a href="#area">Service Area</a>
         <a href="#partner">Join Partner</a>
@@ -1188,7 +1220,7 @@
       <div class="wrap quick-grid">
         <a class="quick-card" href="#booking"><div class="icon-round">❄️</div><h3>Service AC</h3><p>AC tidak dingin, AC mati, bocor, berisik & error.</p></a>
         <a class="quick-card" href="#booking"><div class="icon-round">🧼</div><h3>Cuci AC</h3><p>Cuci indoor outdoor, bersihkan filter, blower & evaporator.</p></a>
-        <a class="quick-card" href="#hemat-listrik"><div class="icon-round">⚡</div><h3>Hemat Listrik AC</h3><p>Solusi penghematan biaya listrik AC untuk rumah, kantor & gedung.</p></a>
+        <a class="quick-card" href="#hemat-listrik"><div class="icon-round">⚡</div><h3>Hemat Listrik AC</h3><p>Zero CAPEX, audit, simulasi hemat, instalasi dan monitoring.</p></a>
         <a class="quick-card" href="#partner"><div class="icon-round">🤝</div><h3>Partner AC</h3><p>Teknisi AC bisa daftar sesuai kota domisili.</p></a>
       </div>
     </section>
@@ -1348,7 +1380,7 @@
               <label>Jenis Layanan</label>
               <select id="layananSelect">
                 <option>Service AC</option>
-                <option>Layanan Hemat Listrik AC</option>
+                <option>Konsultasi Layanan Hemat Listrik AC</option>
                 <option>Cuci AC</option>
                 <option>AC Tidak Dingin</option>
                 <option>AC Bocor / Menetes</option>
@@ -1444,35 +1476,50 @@
       <div class="wrap">
         <div class="section-title">
           <span class="small">Layanan Hemat Listrik AC</span>
-          <h2>Solusi penghematan biaya listrik AC untuk rumah, kantor & gedung</h2>
-          <p>Selain service AC, PT KALIMAYA SURYA ALAM juga menyiapkan layanan efisiensi pemakaian AC agar biaya listrik lebih terkendali, terutama untuk lokasi dengan banyak unit AC dan jam operasional panjang.</p>
+          <h2>Turunkan biaya listrik AC tanpa biaya awal</h2>
+          <p>Solusi efisiensi AC untuk kantor, restoran, klinik, retail, hotel, rumah kost, gudang dan lokasi dengan banyak unit AC. Pelanggan tidak perlu membeli alat di awal; perhitungan dibuat dari hasil audit dan potensi penghematan nyata.</p>
         </div>
 
         <div class="why-grid">
           <div class="why-card">
-            <div class="icon-round">⚡</div>
-            <b>Analisa Pemakaian AC</b>
-            <p>Pengecekan jumlah unit AC, kapasitas PK, jam operasional, pola pemakaian dan estimasi biaya listrik bulanan.</p>
+            <div class="icon-round">01</div>
+            <b>Survey & Audit AC</b>
+            <p>Kami cek jumlah unit AC, kapasitas PK, jam operasional, pola pemakaian dan tagihan listrik sebagai dasar perhitungan.</p>
           </div>
           <div class="why-card">
-            <div class="icon-round">📊</div>
-            <b>Simulasi Penghematan</b>
-            <p>Customer mendapat gambaran potensi penghematan berdasarkan kondisi lapangan dan kebiasaan pemakaian AC.</p>
+            <div class="icon-round">02</div>
+            <b>Simulasi Hemat</b>
+            <p>Pelanggan mendapat gambaran potensi penghematan dalam persen dan rupiah per bulan sebelum memutuskan kerja sama.</p>
           </div>
           <div class="why-card">
-            <div class="icon-round">🛠</div>
-            <b>Maintenance Pendukung</b>
-            <p>Cuci AC, cek freon, cek kebocoran, pengecekan outdoor dan indoor agar performa pendinginan lebih efisien.</p>
+            <div class="icon-round">03</div>
+            <b>Zero CAPEX</b>
+            <p>Skema tanpa biaya awal. Pembayaran dapat dibuat dari hasil penghematan sehingga tidak membebani cashflow pelanggan.</p>
           </div>
           <div class="why-card">
-            <div class="icon-round">🏢</div>
-            <b>Untuk Banyak Unit</b>
-            <p>Cocok untuk kantor, klinik, restoran, hotel kecil, ruko, rumah kost, gudang dan fasilitas usaha lainnya.</p>
+            <div class="icon-round">04</div>
+            <b>Instalasi & Monitoring</b>
+            <p>Pemasangan dilakukan tanpa mengubah sistem AC utama, lalu performa dan hasil penghematan dipantau berkala.</p>
+          </div>
+        </div>
+
+        <div class="hemat-summary">
+          <div>
+            <b>Cocok untuk:</b>
+            <span>kantor, restoran, klinik, sekolah, retail, hotel kecil, rumah kost, gudang, dan usaha dengan AC menyala rutin.</span>
+          </div>
+          <div>
+            <b>Nilai utama:</b>
+            <span>biaya listrik lebih terkendali, tanpa investasi awal, dan tetap menjaga kenyamanan ruangan.</span>
+          </div>
+          <div>
+            <b>Alur kerja:</b>
+            <span>audit → simulasi → kesepakatan → instalasi → monitoring → laporan penghematan.</span>
           </div>
         </div>
 
         <div style="text-align:center;margin-top:22px">
-          <a class="btn btn-yellow" href="https://wa.me/6281296629033?text=Halo%20PT%20KALIMAYA%20SURYA%20ALAM%2C%20saya%20ingin%20konsultasi%20Layanan%20Hemat%20Listrik%20AC.%0ANama%3A%0AKota%2FKabupaten%3A%0AJumlah%20Unit%20AC%3A%0AJam%20Operasional%3A" target="_blank" rel="noopener">⚡ Konsultasi Hemat Listrik AC</a>
+          <a class="btn btn-yellow" href="https://wa.me/6281296629033?text=Halo%20PT%20KALIMAYA%20SURYA%20ALAM%2C%20saya%20ingin%20konsultasi%20Layanan%20Hemat%20Listrik%20AC.%0ANama%3A%0AKota%2FKabupaten%3A%0AJumlah%20Unit%20AC%3A%0AJam%20Operasional%3A%0ATagihan%20Listrik%20Per%20Bulan%3A" target="_blank" rel="noopener">⚡ Konsultasi Hemat Listrik AC</a>
         </div>
       </div>
     </section>
@@ -1580,7 +1627,7 @@
         <h3>Our Services</h3>
         <div class="footer-links">
           <a href="#layanan">Service AC</a>
-          <a href="#hemat-listrik">Layanan Hemat Listrik AC</a>
+          <a href="#hemat-listrik">Hemat Listrik AC</a>
           <a href="#layanan">Maintenance AC Gedung</a>
           <a href="#partner">Join Partner Teknisi AC</a>
         </div>
