@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PT KALIMAYA SURYA ALAM | Platform Service AC Nasional</title>
+  <meta name="description" content="PT KALIMAYA SURYA ALAM menjalankan platform layanan AC nasional untuk service AC, cuci AC, bongkar pasang AC, tambah freon, perbaikan AC, sparepart AC dan maintenance AC gedung melalui jaringan partner teknisi AC sesuai wilayah domisili." />
+  <meta name="theme-color" content="#064d8b" />
+  <style>
+    :root{
+      --blue:#d8437f;
+      --blue-dark:#7b1f4b;
+      --blue-soft:#fff0f6;
+      --blue-pale:#fff7fb;
+      --red:#f05a9d;
+      --red-dark:#c83a78;
+      --yellow:#ffd7e8;
+      --yellow2:#ff8fbd;
+      --green:#22b77a;
+      --ink:#13233a;
+      --text:#364a63;
+      --muted:#6d7d90;
+      --line:#f1c8da;
+      --white:#fff;
+      --shadow:0 18px 48px rgba(216,67,127,.18);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Open Sans", Arial, Helvetica, sans-serif;
+      color:var(--ink);
+      background:#fff;
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    button,input,select,textarea{font-family:inherit}
+    .wrap{width:min(1180px,92vw);margin:auto}
+
+    .top-strip{
+      background:var(--blue-dark);
+      color:#fff;
+      font-size:14px;
+      font-weight:700;
+    }
+    .top-strip .wrap{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      padding:9px 0;
+    }
+    .top-strip strong{color:var(--yellow2)}
+    .top-strip a{text-decoration:underline;text-underline-offset:3px}
+
+    .main-header{
+      background:#fff;
+      border-bottom:1px solid #e5eef7;
+      position:sticky;
+      top:0;
+      z-index:100;
+      box-shadow:0 8px 26px rgba(123,31,75,.10);
+    }
+    .header-row{
+      min-height:96px;
+      display:grid;
+      grid-template-columns:300px 1fr 385px;
+      gap:20px;
+      align-items:center;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .mark{
+      width:74px;
+      height:62px;
+      border-radius:18px;
+      background:#fff;
+      border:4px solid var(--blue);
+      position:relative;
+      display:grid;
+      place-items:center;
+      box-shadow:0 8px 20px rgba(216,67,127,.14);
+      overflow:hidden;
+    }
+    .mark:before{
+      content:"";
+      position:absolute;
+      left:-8px;
+      right:-8px;
+      bottom:-8px;
+      height:30px;
+      background:var(--yellow);
+      transform:skewY(-8deg);
+    }
+    .mark:after{
+      content:"KSA";
+      position:relative;
+      z-index:2;
+      color:var(--blue);
+      font-weight:1000;
+      font-size:19px;
+      letter-spacing:-1px;
+    }
+    .brand b{
+      display:block;
+      color:var(--blue);
+      font-size:20px;
+      line-height:1;
+      letter-spacing:-.5px;
+      font-weight:1000;
+    }
+    .brand span{
+      display:block;
+      color:var(--red);
+      font-weight:900;
+      font-size:12px;
+      margin-top:5px;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+    }
+
+    .review-link{
+      justify-self:center;
+      text-align:center;
+      color:var(--blue);
+      font-weight:900;
+      font-size:14px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:4px;
+    }
+    .stars{
+      color:var(--yellow2);
+      font-size:24px;
+      letter-spacing:2px;
+      text-shadow:0 1px 0 rgba(0,0,0,.15);
+      white-space:nowrap;
+    }
+    .header-actions{
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      gap:9px;
+      min-height:50px;
+      border:0;
+      border-radius:999px;
+      padding:14px 18px;
+      font-weight:1000;
+      cursor:pointer;
+      transition:.2s ease;
+      white-space:nowrap;
+      box-shadow:none;
+    }
+    .btn-red{
+      background:var(--red);
+      color:#fff;
+      box-shadow:0 9px 22px rgba(240,90,157,.25);
+    }
+    .btn-red:hover{background:var(--red-dark);transform:translateY(-2px)}
+    .btn-blue{
+      background:var(--blue);
+      color:#fff;
+      box-shadow:0 9px 22px rgba(216,67,127,.24);
+    }
+    .btn-blue:hover{background:var(--blue-dark);transform:translateY(-2px)}
+    .btn-yellow{
+      background:var(--yellow);
+      color:var(--blue-dark);
+      box-shadow:0 9px 22px rgba(251,189,25,.22);
+    }
+    .search-btn{
+      width:48px;
+      height:48px;
+      border-radius:999px;
+      border:2px solid var(--line);
+      background:#fff;
+      color:var(--blue);
+      font-size:20px;
+      font-weight:900;
+    }
+
+    .nav-bar{
+      background:var(--blue);
+      color:#fff;
+    }
+    .nav-bar .wrap{
+      display:flex;
+      justify-content:center;
+      gap:5px;
+    }
+    .nav-bar a{
+      padding:14px 18px;
+      font-weight:900;
+      font-size:15px;
+      border-left:1px solid rgba(255,255,255,.15);
+      border-right:1px solid rgba(255,255,255,.08);
+    }
+    .nav-bar a:hover{background:rgba(255,255,255,.12)}
+    .hamb{display:none}
+
+    .hero{
+      background:
+        radial-gradient(ellipse at 83% 15%, rgba(255,215,232,.95) 0 18%, transparent 19%),
+        linear-gradient(100deg,#fff 0 52%,#fff0f7 52% 100%);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      right:-150px;
+      bottom:-210px;
+      width:650px;
+      height:420px;
+      background:#ffe1ee;
+      border-radius:50%;
+      transform:rotate(-14deg);
+      opacity:.9;
+    }
+    .hero-grid{
+      min-height:670px;
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:30px;
+      align-items:center;
+      position:relative;
+      z-index:2;
+      padding:44px 0 54px;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--red);
+      font-size:15px;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+    .eyebrow:before{
+      content:"";
+      width:42px;
+      height:6px;
+      background:var(--yellow);
+      border-radius:99px;
+    }
+    h1{
+      margin:14px 0 16px;
+      color:var(--blue);
+      font-size:clamp(42px,5.2vw,72px);
+      line-height:.95;
+      font-weight:1000;
+      letter-spacing:-2.8px;
+    }
+    h1 em{
+      color:var(--red);
+      font-style:normal;
+    }
+    .lead{
+      font-size:20px;
+      color:#3e5872;
+      max-width:640px;
+      margin:0 0 24px;
+      font-weight:700;
+    }
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin:25px 0 28px;
+    }
+    .hero-actions .btn{font-size:18px;min-width:210px}
+    .mini-trust{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .trust-pill{
+      display:flex;
+      align-items:center;
+      gap:9px;
+      padding:10px 13px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:999px;
+      box-shadow:0 8px 18px rgba(216,67,127,.09);
+      font-weight:900;
+      color:var(--blue-dark);
+    }
+    .trust-pill span{
+      width:27px;
+      height:27px;
+      display:grid;
+      place-items:center;
+      background:var(--yellow);
+      color:var(--blue-dark);
+      border-radius:50%;
+      font-size:14px;
+    }
+    .hero-right{
+      position:relative;
+      min-height:510px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+    }
+    .yellow-oval{
+      position:absolute;
+      width:460px;
+      height:360px;
+      background:var(--yellow);
+      border-radius:50%;
+      top:28px;
+      right:5px;
+      transform:rotate(-12deg);
+      box-shadow:0 20px 45px rgba(251,189,25,.2);
+    }
+    .person-card{
+      width:min(450px,96%);
+      height:500px;
+      position:relative;
+      z-index:2;
+      border-radius:30px;
+      background:
+        linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,0)),
+        linear-gradient(145deg,#f05a9d,#9f2d62);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      border:9px solid #fff;
+    }
+    .worker-head{
+      position:absolute;
+      top:70px;
+      left:50%;
+      transform:translateX(-50%);
+      width:152px;
+      height:152px;
+      border-radius:50%;
+      background:#ffd0a1;
+      border:8px solid #fff;
+      box-shadow:0 18px 40px rgba(0,0,0,.18);
+    }
+    .worker-head:before{
+      content:"";
+      position:absolute;
+      left:16px;
+      top:-21px;
+      width:120px;
+      height:65px;
+      background:var(--blue);
+      border-radius:70px 70px 20px 20px;
+      border:6px solid #fff;
+    }
+    .worker-body{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:-30px;
+      width:265px;
+      height:285px;
+      background:#fff;
+      border-radius:110px 110px 25px 25px;
+      box-shadow:0 -10px 35px rgba(0,0,0,.1);
+    }
+    .worker-body:before{
+      content:"KSA SERVICE";
+      position:absolute;
+      top:72px;
+      left:45px;
+      color:var(--blue);
+      font-size:24px;
+      font-weight:1000;
+      transform:rotate(-5deg);
+    }
+    .tool-icon{
+      position:absolute;
+      right:54px;
+      bottom:120px;
+      font-size:88px;
+      transform:rotate(-17deg);
+      filter:drop-shadow(0 12px 20px rgba(0,0,0,.23));
+    }
+    .hero-coupon{
+      position:absolute;
+      z-index:4;
+      left:0;
+      bottom:18px;
+      background:#fff;
+      border:4px solid var(--yellow);
+      border-radius:23px;
+      padding:16px 18px;
+      box-shadow:0 20px 48px rgba(123,31,75,.20);
+      max-width:260px;
+    }
+    .hero-coupon b{
+      display:block;
+      color:var(--red);
+      font-size:29px;
+      line-height:1;
+      font-weight:1000;
+    }
+    .hero-coupon span{
+      color:var(--blue);
+      font-weight:1000;
+    }
+
+    .quick{
+      margin-top:-36px;
+      position:relative;
+      z-index:5;
+    }
+    .quick-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+    .quick-card{
+      background:#fff;
+      border:1px solid #d9e9f4;
+      border-radius:22px;
+      padding:22px 18px;
+      text-align:center;
+      box-shadow:0 18px 36px rgba(216,67,127,.14);
+      min-height:158px;
+      transition:.2s ease;
+    }
+    .quick-card:hover{transform:translateY(-6px)}
+    .icon-round{
+      width:70px;
+      height:70px;
+      margin:0 auto 12px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--blue-soft);
+      border:4px solid #fff;
+      color:var(--blue);
+      font-size:33px;
+      box-shadow:0 9px 22px rgba(216,67,127,.14);
+    }
+    .quick-card h3{
+      margin:0 0 5px;
+      color:var(--blue);
+      font-size:20px;
+      font-weight:1000;
+    }
+    .quick-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:700;
+    }
+
+    section{padding:82px 0}
+    .section-title{
+      text-align:center;
+      max-width:790px;
+      margin:0 auto 40px;
+    }
+    .section-title .small{
+      display:block;
+      color:var(--red);
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:14px;
+      font-weight:1000;
+      margin-bottom:8px;
+    }
+    h2{
+      margin:0 0 12px;
+      color:var(--blue);
+      font-size:clamp(31px,4vw,50px);
+      line-height:1.05;
+      letter-spacing:-1.4px;
+      font-weight:1000;
+    }
+    .section-title p{
+      margin:0;
+      color:#587086;
+      font-size:18px;
+      font-weight:700;
+    }
+
+    .services{
+      background:var(--blue-pale);
+      position:relative;
+      overflow:hidden;
+    }
+    .services:before{
+      content:"";
+      position:absolute;
+      left:-180px;
+      top:60px;
+      width:470px;
+      height:280px;
+      background:#ffe1ee;
+      border-radius:50%;
+      transform:rotate(-8deg);
+      opacity:.8;
+    }
+    .service-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+      position:relative;
+      z-index:2;
+    }
+    .service-card{
+      background:#fff;
+      border:1px solid #d9e8f2;
+      border-radius:24px;
+      padding:27px;
+      box-shadow:0 12px 30px rgba(216,67,127,.09);
+      min-height:296px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .service-card h3{
+      margin:13px 0 10px;
+      color:var(--blue);
+      font-size:24px;
+      font-weight:1000;
+    }
+    .service-card p{
+      color:#52697e;
+      font-weight:700;
+      margin:0 0 18px;
+    }
+    .check-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:7px;
+      color:#28445d;
+      font-weight:900;
+      font-size:14px;
+    }
+    .check-list li:before{
+      content:"✓";
+      display:inline-grid;
+      place-items:center;
+      width:18px;
+      height:18px;
+      margin-right:8px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--blue);
+      font-size:12px;
+      font-weight:1000;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:.95fr 1.05fr;
+      gap:45px;
+      align-items:center;
+    }
+    .photo-box{
+      min-height:500px;
+      border-radius:34px;
+      background:
+        radial-gradient(circle at 28% 22%, #ffd7e8 0 18%, transparent 19%),
+        linear-gradient(145deg,var(--blue),#ff8fbd);
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+      border:10px solid #fff;
+    }
+    .truck-art{
+      position:absolute;
+      left:7%;
+      right:7%;
+      bottom:55px;
+      height:220px;
+      background:#fff;
+      border-radius:35px 35px 20px 20px;
+      box-shadow:0 20px 44px rgba(0,0,0,.22);
+    }
+    .truck-art:before{
+      content:"";
+      position:absolute;
+      left:35px;
+      top:38px;
+      width:230px;
+      height:88px;
+      border-radius:18px;
+      background:linear-gradient(135deg,var(--blue),#ff8fbd);
+    }
+    .truck-art:after{
+      content:"PT KALIMAYA\A SURYA ALAM";
+      white-space:pre;
+      position:absolute;
+      left:64px;
+      top:48px;
+      color:#fff;
+      font-weight:1000;
+      font-size:23px;
+      line-height:1.05;
+    }
+    .wheel,.wheel2{
+      position:absolute;
+      bottom:-31px;
+      width:80px;
+      height:80px;
+      border-radius:50%;
+      background:#111;
+      border:13px solid #596877;
+    }
+    .wheel{left:82px}.wheel2{right:80px}
+    .callout{
+      position:absolute;
+      right:25px;
+      top:25px;
+      background:#fff;
+      border-radius:20px;
+      padding:18px;
+      width:230px;
+      box-shadow:0 16px 36px rgba(0,0,0,.15);
+      border-left:8px solid var(--red);
+    }
+    .callout b{color:var(--blue);font-size:22px;display:block}
+    .callout span{color:var(--text);font-weight:800}
+    .copy p{
+      color:#4d667e;
+      font-size:18px;
+      font-weight:700;
+    }
+    .number-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin:25px 0;
+    }
+    .number{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:21px;
+      box-shadow:0 8px 20px rgba(216,67,127,.08);
+    }
+    .number b{
+      color:var(--red);
+      display:block;
+      font-size:36px;
+      line-height:1;
+      font-weight:1000;
+    }
+    .number span{
+      color:var(--blue);
+      font-weight:900;
+    }
+
+    .blue-section{
+      background:var(--blue);
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+    .blue-section:before{
+      content:"";
+      position:absolute;
+      right:-210px;
+      top:-140px;
+      width:520px;
+      height:340px;
+      background:rgba(255,215,232,.98);
+      border-radius:50%;
+      transform:rotate(-12deg);
+    }
+    .blue-section h2,
+    .blue-section .section-title .small{color:#fff}
+    .blue-section .section-title p{color:#d8eeff}
+    .why-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:17px;
+      position:relative;
+      z-index:2;
+    }
+    .why-card{
+      background:rgba(255,255,255,.1);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:23px;
+      padding:24px;
+      backdrop-filter:blur(8px);
+    }
+    .why-card .icon-round{
+      margin:0 0 14px;
+      background:#fff;
+      color:var(--blue);
+      box-shadow:none;
+    }
+    .why-card b{
+      display:block;
+      font-size:20px;
+      margin-bottom:8px;
+      font-weight:1000;
+    }
+    .why-card p{
+      color:#d7ecff;
+      margin:0;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .booking{
+      background:linear-gradient(180deg,#fff,#fff4f9);
+    }
+    .booking-box{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      background:#fff;
+      border-radius:32px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+    .booking-left{
+      background:
+        radial-gradient(circle at 80% 16%,rgba(255,215,232,.95),transparent 18%),
+        linear-gradient(145deg,#7b1f4b,#d8437f);
+      color:#fff;
+      padding:42px;
+      position:relative;
+    }
+    .booking-left h2{color:#fff}
+    .booking-left p{
+      color:#d9ecff;
+      font-size:17px;
+      font-weight:700;
+    }
+    .info-line{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin:16px 0;
+      font-weight:1000;
+    }
+    .info-line span{
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:#fff;
+      color:var(--blue);
+    }
+    .form{
+      padding:42px;
+      display:grid;
+      gap:14px;
+    }
+    .row{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+    label{
+      display:block;
+      font-weight:1000;
+      color:var(--blue);
+      margin-bottom:6px;
+      font-size:14px;
+    }
+    input,select,textarea{
+      width:100%;
+      border:1px solid #caddeb;
+      border-radius:14px;
+      padding:15px 16px;
+      font-size:16px;
+      outline:none;
+      color:var(--ink);
+      background:#fbfdff;
+    }
+    input:focus,select:focus,textarea:focus{
+      border-color:var(--blue);
+      box-shadow:0 0 0 4px rgba(216,67,127,.12);
+    }
+    textarea{min-height:110px;resize:vertical}
+
+    .reviews{background:#fff}
+    .review-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .review{
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:24px;
+      background:#fff;
+      box-shadow:0 12px 28px rgba(216,67,127,.09);
+      position:relative;
+    }
+    .review:before{
+      content:"“";
+      position:absolute;
+      top:-10px;
+      right:20px;
+      color:#d7eaf8;
+      font-size:90px;
+      font-weight:1000;
+      line-height:1;
+    }
+    .review p{
+      color:#445d76;
+      font-weight:700;
+      position:relative;
+      z-index:2;
+    }
+    .review b{color:var(--blue);font-weight:1000}
+
+    .area{
+      background:var(--blue-pale);
+    }
+    .area-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+    }
+    .area-chip{
+      background:#fff;
+      border:1px solid var(--line);
+      color:var(--blue);
+      font-weight:1000;
+      text-align:center;
+      padding:15px;
+      border-radius:16px;
+      box-shadow:0 8px 18px rgba(6,77,139,.05);
+    }
+    .emergency-cta{
+      background:linear-gradient(135deg,#d8437f,#ff8fbd);
+      color:#fff;
+      border-radius:30px;
+      padding:36px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:20px;
+      align-items:center;
+      box-shadow:0 20px 45px rgba(240,90,157,.28);
+    }
+    .emergency-cta h2{color:#fff;margin:0}
+    .emergency-cta p{font-size:18px;margin:8px 0 0;font-weight:700;color:#fff5d9}
+
+    .faq{background:#fff}
+    details{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px 20px;
+      box-shadow:0 8px 22px rgba(6,77,139,.06);
+    }
+    details + details{margin-top:12px}
+    summary{
+      color:var(--blue);
+      font-size:18px;
+      font-weight:1000;
+      cursor:pointer;
+    }
+    details p{
+      color:#536c84;
+      font-weight:700;
+      margin-bottom:0;
+    }
+
+    footer{
+      background:var(--blue-dark);
+      color:#d9ecff;
+      padding:55px 0 94px;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr .8fr 1fr;
+      gap:28px;
+    }
+    footer h3{
+      color:#fff;
+      margin:0 0 12px;
+      font-size:20px;
+    }
+    footer p, footer a{
+      color:#d9ecff;
+      font-weight:700;
+      font-size:15px;
+    }
+    .footer-links{
+      display:grid;
+      gap:8px;
+    }
+
+    .bottom-dock{
+      position:fixed;
+      z-index:120;
+      left:50%;
+      bottom:14px;
+      transform:translateX(-50%);
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:8px;
+      display:flex;
+      gap:8px;
+      box-shadow:0 18px 40px rgba(123,31,75,.22);
+    }
+    .bottom-dock a{
+      padding:12px 16px;
+      border-radius:999px;
+      color:#fff;
+      font-weight:1000;
+      font-size:14px;
+    }
+    .bottom-dock a:nth-child(1){background:var(--green)}
+    .bottom-dock a:nth-child(2){background:var(--red)}
+    .bottom-dock a:nth-child(3){background:var(--blue)}
+    .wa-float{
+      position:fixed;
+      right:18px;
+      bottom:88px;
+      z-index:120;
+      width:62px;
+      height:62px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:#25d366;
+      color:#fff;
+      font-size:30px;
+      box-shadow:0 16px 35px rgba(37,211,102,.35);
+    }
+
+    @media(max-width:1020px){
+      .header-row{
+        grid-template-columns:1fr auto;
+        min-height:82px;
+      }
+      .review-link,.header-actions{display:none}
+      .hamb{
+        display:block;
+        width:48px;
+        height:48px;
+        border-radius:12px;
+        border:1px solid var(--line);
+        background:#fff;
+        color:var(--blue);
+        font-size:27px;
+        font-weight:1000;
+      }
+      .nav-bar{
+        position:fixed;
+        left:4vw;
+        right:4vw;
+        top:88px;
+        z-index:101;
+        border-radius:18px;
+        overflow:hidden;
+        box-shadow:var(--shadow);
+        display:none;
+      }
+      .nav-bar.open{display:block}
+      .nav-bar .wrap{
+        width:100%;
+        display:grid;
+        gap:0;
+      }
+      .nav-bar a{border:0;border-bottom:1px solid rgba(255,255,255,.16)}
+      .hero-grid,.split,.booking-box{grid-template-columns:1fr}
+      .hero{background:linear-gradient(#fff,#fff0f7)}
+      .hero-grid{padding-top:30px}
+      .quick-grid,.why-grid,.area-grid{grid-template-columns:repeat(2,1fr)}
+      .service-grid,.review-grid{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:640px){
+      .top-strip .wrap{display:block;text-align:center}
+      .brand b{font-size:16px}
+      .brand span{font-size:10px}
+      .mark{width:58px;height:52px;border-width:3px}
+      h1{font-size:40px;letter-spacing:-1.5px}
+      .lead{font-size:16px}
+      .hero-actions .btn{width:100%;min-width:0}
+      .hero-right{min-height:390px}
+      .yellow-oval{width:330px;height:260px}
+      .person-card{height:385px}
+      .worker-head{width:120px;height:120px}
+      .worker-body{width:220px;height:225px}
+      .tool-icon{font-size:62px;right:30px}
+      .hero-coupon{left:8px;bottom:0}
+      .quick-grid,.why-grid,.area-grid,.row,.number-grid{grid-template-columns:1fr}
+      section{padding:58px 0}
+      .booking-left,.form,.emergency-cta{padding:26px}
+      .emergency-cta{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr}
+      .bottom-dock{width:94vw;justify-content:space-between}
+      .bottom-dock a{font-size:12px;padding:11px 10px}
+    }
+  </style>
+</head>
+<body>
+  <div class="top-strip">
+    <div class="wrap">
+      <div>Open 24 Hours • 24/7 Emergency Support Available</div>
+      <div>📍 Pusat Operasional: Tangerang, Banten • Layanan Nasional &nbsp; | &nbsp; <strong>Call:</strong> <a href="tel:081296629033">0812-9662-9033</a></div>
+    </div>
+  </div>
+
+  <header class="main-header">
+    <div class="wrap header-row">
+      <a href="#home" class="brand">
+        <div class="mark"></div>
+        <div>
+          <b>PT KALIMAYA<br>SURYA ALAM</b>
+          <span>AC Service Network</span>
+        </div>
+      </a>
+
+      <a href="#reviews" class="review-link">
+        <span class="stars">★★★★★</span>
+        <span>Read Our Reviews</span>
+      </a>
+
+      <div class="header-actions">
+        <button class="search-btn" type="button" onclick="document.getElementById('layanan').scrollIntoView()">⌕</button>
+        <a class="btn btn-red" href="#booking">📅 Schedule Online</a>
+        <a class="btn btn-blue" href="tel:081296629033">☎ 081296629033</a>
+      </div>
+
+      <button class="hamb" id="hamb" type="button" aria-label="Menu">☰</button>
+    </div>
+    <nav class="nav-bar" id="navBar">
+      <div class="wrap">
+        <a href="#home">Home</a>
+        <a href="#layanan">Service AC</a>
+        <a href="#layanan">Cuci AC</a>
+        <a href="#layanan">Freon AC</a>
+        <a href="#tentang">About Us</a>
+        <a href="#area">Service Area</a>
+        <a href="#partner">Join Partner</a>
+        <a href="#booking">Schedule Online</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">Trusted local service company</span>
+          <h1>Nobody Wows Clients Like <em>We Do!</em></h1>
+          <p class="lead">PT KALIMAYA SURYA ALAM melayani semua kebutuhan AC secara nasional: cuci AC, service AC, bongkar pasang AC, tambah freon, perbaikan AC, penggantian sparepart, AC tidak dingin, AC bocor, AC mati, hingga maintenance AC gedung. Order dikelola dari pusat operasional kami, lalu diarahkan ke partner teknisi AC sesuai wilayah pelanggan.</p>
+          <div class="hero-actions">
+            <a class="btn btn-red" href="#booking">📅 Schedule Online</a>
+            <a class="btn btn-blue" href="tel:081296629033">☎ 081296629033</a>
+          </div>
+          <div class="mini-trust">
+            <div class="trust-pill"><span>✓</span> Partner teknisi terverifikasi</div>
+            <div class="trust-pill"><span>★</span> Estimasi jelas</div>
+            <div class="trust-pill"><span>24</span> Dukungan operator pusat</div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="yellow-oval"></div>
+          <div class="person-card" aria-label="Ilustrasi teknisi PT KALIMAYA SURYA ALAM">
+            <div class="worker-head"></div>
+            <div class="worker-body"></div>
+            <div class="tool-icon">🔧</div>
+          </div>
+          <div class="hero-coupon">
+            <b>Fast Help</b>
+            <span>Connect with a live operator now.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick">
+      <div class="wrap quick-grid">
+        <a class="quick-card" href="#booking"><div class="icon-round">❄️</div><h3>Service AC</h3><p>AC tidak dingin, AC mati, bocor, berisik & error.</p></a>
+        <a class="quick-card" href="#booking"><div class="icon-round">🧼</div><h3>Cuci AC</h3><p>Cuci indoor outdoor, bersihkan filter, blower & evaporator.</p></a>
+        <a class="quick-card" href="#booking"><div class="icon-round">🧊</div><h3>Freon AC</h3><p>Cek tekanan, tambah freon, cek kebocoran & performa dingin.</p></a>
+        <a class="quick-card" href="#partner"><div class="icon-round">🤝</div><h3>Partner AC</h3><p>Teknisi AC bisa daftar sesuai kota domisili.</p></a>
+      </div>
+    </section>
+
+    <section class="services" id="layanan">
+      <div class="wrap">
+        <div class="section-title">
+          <span class="small">Our Services</span>
+          <h2>Service AC, Service AC & Maintenance Nasional</h2>
+          <p>Semua layanan difokuskan ke AC. Order dari seluruh Indonesia dikelola oleh pusat PT KSA dan diteruskan kepada partner teknisi AC sesuai kota/domisili pelanggan.</p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <div>
+              <div class="icon-round">❄️</div>
+              <h3>Service AC</h3>
+              <p>Penanganan AC tidak dingin, AC mati total, AC bocor, suara berisik, indoor menetes, outdoor tidak hidup dan error teknis lainnya.</p>
+            </div>
+            <ul class="check-list">
+              <li>AC rumah, kantor & ruko</li>
+              <li>AC split, cassette & standing</li>
+              <li>Pengecekan indoor outdoor</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="icon-round">🧼</div>
+              <h3>Cuci AC</h3>
+              <p>Pembersihan indoor dan outdoor AC agar sirkulasi udara lebih bersih, dingin lebih optimal, dan pemakaian AC lebih nyaman.</p>
+            </div>
+            <ul class="check-list">
+              <li>Cuci indoor & outdoor</li>
+              <li>Bersihkan filter & evaporator</li>
+              <li>Perawatan AC berkala</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="icon-round">🔧</div>
+              <h3>Perbaikan AC</h3>
+              <p>Perbaikan kerusakan komponen AC seperti kapasitor, sensor, thermistor, fan, modul, kompresor, pipa dan jalur kelistrikan.</p>
+            </div>
+            <ul class="check-list">
+              <li>Diagnosa kerusakan</li>
+              <li>Ganti sparepart AC</li>
+              <li>Perbaikan kelistrikan AC</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="icon-round">🧊</div>
+              <h3>Freon AC</h3>
+              <p>Pengecekan tekanan freon, tambah freon, indikasi kebocoran, AC kurang dingin dan pemeriksaan performa pendinginan.</p>
+            </div>
+            <ul class="check-list">
+              <li>Cek tekanan freon</li>
+              <li>Tambah freon sesuai kebutuhan</li>
+              <li>Cek indikasi bocor</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="icon-round">🧰</div>
+              <h3>Bongkar Pasang AC</h3>
+              <p>Bongkar AC, pasang AC baru, relokasi AC, instalasi pipa, bracket outdoor, jalur drain AC dan finishing pemasangan.</p>
+            </div>
+            <ul class="check-list">
+              <li>Bongkar AC lama</li>
+              <li>Pasang AC baru</li>
+              <li>Relokasi unit AC</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="icon-round">🏢</div>
+              <h3>Maintenance AC Gedung</h3>
+              <p>Perawatan AC berkala untuk kantor, ruko, klinik, rumah kost, apartemen, gudang, fasilitas komersial dan proyek nasional.</p>
+            </div>
+            <ul class="check-list">
+              <li>Kontrak maintenance</li>
+              <li>Jadwal visit berkala</li>
+              <li>Laporan pekerjaan AC</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="tentang">
+      <div class="wrap split">
+        <div class="photo-box">
+          <div class="callout"><b>Service Truck</b><span>Tim teknisi siap menuju lokasi pelanggan.</span></div>
+          <div class="truck-art"><i class="wheel"></i><i class="wheel2"></i></div>
+        </div>
+        <div class="copy">
+          <span class="eyebrow">About PT KALIMAYA SURYA ALAM</span>
+          <h2>Pusat operator nasional untuk layanan teknisi AC kota besar</h2>
+          <p>Kami menjalankan sistem layanan AC dari pusat operasional di Tangerang, Banten. Setiap permintaan customer dicatat, disaring berdasarkan kota, jenis layanan/keluhan AC dan urgensi, lalu diarahkan kepada partner teknisi AC yang berdomisili di wilayah terdekat.</p>
+          <p>Dengan konsep ini, PT KALIMAYA SURYA ALAM dapat melayani layanan AC di banyak kota tanpa harus membuka cabang fisik di setiap wilayah. Partner teknisi AC lokal tetap bekerja di wilayahnya, sementara sistem, brand, booking, arahan kerja dan komunikasi pelanggan dikelola dari pusat.</p>
+          <div class="number-grid">
+            <div class="number"><b>Nasional</b><span>Kota Besar Indonesia</span></div>
+            <div class="number"><b>Partner</b><span>Teknisi Sesuai Domisili</span></div>
+            <div class="number"><b>Pusat</b><span>Operator Tangerang</span></div>
+            <div class="number"><b>KSA</b><span>AC Service Network</span></div>
+          </div>
+          <a class="btn btn-red" href="#booking">Schedule Online</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="blue-section" id="keunggulan">
+      <div class="wrap">
+        <div class="section-title">
+          <span class="small">Why Choose Us</span>
+          <h2>Operator pusat. Partner wilayah. Layanan nasional.</h2>
+          <p>Customer cukup memilih layanan dan mengirim lokasi. Sistem pusat akan mengarahkan order kepada partner teknisi di kota terdekat sesuai domisili dan kategori keahlian.</p>
+        </div>
+        <div class="why-grid">
+          <div class="why-card"><div class="icon-round">🏢</div><b>Operator Pusat</b><p>Booking, arahan layanan dan komunikasi pelanggan dikelola dari pusat PT KSA.</p></div>
+          <div class="why-card"><div class="icon-round">📍</div><b>Teknisi Domisili</b><p>Order diarahkan ke partner berdasarkan kota dan wilayah tempat tinggal teknisi.</p></div>
+          <div class="why-card"><div class="icon-round">🤝</div><b>Kemitraan Terbuka</b><p>Tukang service AC dan teknisi service AC dapat mendaftar sebagai partner wilayah.</p></div>
+          <div class="why-card"><div class="icon-round">📋</div><b>Standar Layanan</b><p>Setiap order mengikuti format kerja, estimasi, laporan dan komunikasi yang seragam.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="booking" id="booking">
+      <div class="wrap booking-box">
+        <div class="booking-left">
+          <span class="small">Schedule Online</span>
+          <h2>Need Emergency Service?</h2>
+          <p>Isi form, pesan otomatis akan masuk ke operator pusat PT KALIMAYA SURYA ALAM. Tim pusat akan mengecek kota pelanggan dan mengarahkan ke partner teknisi terdekat.</p>
+          <div class="info-line"><span>☎</span> 0812-9662-9033</div>
+          <div class="info-line"><span>📍</span> Pusat: Tangerang, Banten • Layanan Nasional</div>
+          <div class="info-line"><span>🛠</span> Service AC • AC • Maintenance AC • Pompa</div>
+        </div>
+
+        <form class="form" id="bookingForm">
+          <div class="row">
+            <div>
+              <label>Nama</label>
+              <input id="nama" required placeholder="Nama pelanggan" />
+            </div>
+            <div>
+              <label>No. WhatsApp</label>
+              <input id="wa" required placeholder="08xxxxxxxxxx" />
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label>Jenis Layanan</label>
+              <select id="layananSelect">
+                <option>Service AC</option>
+                <option>Cuci AC</option>
+                <option>AC Tidak Dingin</option>
+                <option>AC Bocor / Menetes</option>
+                <option>Tambah / Cek Freon</option>
+                <option>Bongkar Pasang AC</option>
+                <option>Ganti Sparepart AC</option>
+                <option>Maintenance AC Gedung</option>
+                <option>Survey Kontrak Maintenance AC</option>
+              </select>
+            </div>
+            <div>
+              <label>Prioritas</label>
+              <select id="prioritas">
+                <option>Normal - Jadwalkan</option>
+                <option>Urgent - Hari ini</option>
+                <option>Emergency - Secepatnya</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label>Kota / Kabupaten</label>
+              <input id="kota" required placeholder="Contoh: Jakarta Selatan, Bandung, Surabaya" />
+            </div>
+            <div>
+              <label>Provinsi</label>
+              <input id="provinsi" required placeholder="Contoh: DKI Jakarta, Jawa Barat" />
+            </div>
+          </div>
+          <div>
+            <label>Alamat Lokasi</label>
+            <input id="alamat" required placeholder="Alamat lengkap / patokan" />
+          </div>
+          <div>
+            <label>Keluhan / Kebutuhan</label>
+            <textarea id="keluhan" required placeholder="Contoh: pipa bocor, saluran mampet, AC tidak dingin, pompa air mati..."></textarea>
+          </div>
+          <button class="btn btn-red" type="submit">📅 Send Schedule Request</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="reviews" id="reviews">
+      <div class="wrap">
+        <div class="section-title">
+          <span class="small">Reviews</span>
+          <h2>What Clients Say</h2>
+          <p>Bagian ini disiapkan untuk testimoni asli setelah website berjalan.</p>
+        </div>
+        <div class="review-grid">
+          <div class="review"><div class="stars">★★★★★</div><p>Teknisi datang sesuai jadwal, AC tidak dingin dicek penyebabnya dan hasil kerja dijelaskan dengan rapi.</p><b>Pelanggan Rumah - Tangerang</b></div>
+          <div class="review"><div class="stars">★★★★★</div><p>Service AC kantor dibuat jadwal berkala. Komunikasi mudah dan laporan pekerjaan jelas.</p><b>Office Maintenance</b></div>
+          <div class="review"><div class="stars">★★★★★</div><p>AC bocor dan kurang dingin ditangani cepat. Komunikasi teknisi jelas dan respon pusat mudah.</p><b>Pelanggan Rumah</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="area" id="area">
+      <div class="wrap">
+        <div class="section-title">
+          <span class="small">Service Area</span>
+          <h2>Jaringan layanan kota besar seluruh Indonesia</h2>
+          <p>Pusat operasional berada di Tangerang, Banten. Layanan diperluas melalui partner teknisi lokal yang mendaftar sesuai domisili kota masing-masing.</p>
+        </div>
+        <div class="area-grid">
+          <div class="area-chip">Jabodetabek</div>
+          <div class="area-chip">Bandung</div>
+          <div class="area-chip">Surabaya</div>
+          <div class="area-chip">Semarang</div>
+          <div class="area-chip">Yogyakarta</div>
+          <div class="area-chip">Solo</div>
+          <div class="area-chip">Malang</div>
+          <div class="area-chip">Medan</div>
+          <div class="area-chip">Palembang</div>
+          <div class="area-chip">Pekanbaru</div>
+          <div class="area-chip">Padang</div>
+          <div class="area-chip">Lampung</div>
+          <div class="area-chip">Denpasar</div>
+          <div class="area-chip">Makassar</div>
+          <div class="area-chip">Balikpapan</div>
+          <div class="area-chip">Samarinda</div>
+          <div class="area-chip">Banjarmasin</div>
+          <div class="area-chip">Pontianak</div>
+          <div class="area-chip">Manado</div>
+          <div class="area-chip">Kota Besar Lainnya</div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="services" id="partner">
+      <div class="wrap">
+        <div class="section-title">
+          <span class="small">Join Partner</span>
+          <h2>Daftar sebagai Partner Teknisi Wilayah</h2>
+          <p>Teknisi AC dapat bergabung sebagai partner PT KALIMAYA SURYA ALAM sesuai wilayah domisili untuk menerima order service AC, cuci AC, bongkar pasang, freon, sparepart dan maintenance AC.</p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <div>
+              <div class="icon-round">📝</div>
+              <h3>1. Daftar Domisili</h3>
+              <p>Partner mengisi nama, nomor WhatsApp, kota/kabupaten, provinsi, area kerja dan kategori layanan AC yang dikuasai.</p>
+            </div>
+            <ul class="check-list">
+              <li>Service AC</li>
+              <li>Service AC & pipa</li>
+              <li>Pompa air / water heater</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="icon-round">✅</div>
+              <h3>2. Verifikasi Partner</h3>
+              <p>Admin pusat melakukan pengecekan data, pengalaman kerja, foto pekerjaan, alat kerja dan kesiapan menerima order.</p>
+            </div>
+            <ul class="check-list">
+              <li>Data teknisi</li>
+              <li>Wilayah layanan</li>
+              <li>Standar komunikasi</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="icon-round">📲</div>
+              <h3>3. Order Masuk</h3>
+              <p>Ketika ada customer dari wilayah yang sesuai, operator pusat akan menghubungi partner untuk konfirmasi jadwal dan estimasi.</p>
+            </div>
+            <ul class="check-list">
+              <li>Order berdasarkan kota</li>
+              <li>Koordinasi WhatsApp</li>
+              <li>Laporan hasil kerja</li>
+            </ul>
+          </article>
+        </div>
+
+        <div style="text-align:center;margin-top:28px">
+          <a class="btn btn-red" href="https://wa.me/6281296629033?text=Halo%20PT%20KALIMAYA%20SURYA%20ALAM%2C%20saya%20ingin%20daftar%20sebagai%20partner%20teknisi.%0ANama%3A%0AKota%2FKabupaten%3A%0AProvinsi%3A%0AKeahlian%3A%20Service%20AC%20%2F%20Service AC%20%2F%20Pompa%20Air%20%2F%20Water%20Heater%0APengalaman%3A" target="_blank" rel="noopener">🤝 Daftar Partner Teknisi</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap emergency-cta">
+        <div>
+          <h2>Need Emergency Service?</h2>
+          <p>Connect with a live operator now. Order AC dikelola dari pusat, lalu diarahkan ke partner teknisi AC sesuai kota/wilayah pelanggan.</p>
+        </div>
+        <a class="btn btn-yellow" href="tel:081296629033">☎ 081296629033</a>
+      </div>
+    </section>
+
+    <section class="faq">
+      <div class="wrap">
+        <div class="section-title">
+          <span class="small">FAQ</span>
+          <h2>Pertanyaan Umum</h2>
+        </div>
+        <details open>
+          <summary>Apakah bisa emergency?</summary>
+          <p>Bisa. Hubungi 081296629033 agar tim mengecek ketersediaan teknisi dan estimasi kedatangan.</p>
+        </details>
+        <details>
+          <summary>Apakah harga langsung ditentukan?</summary>
+          <p>Untuk pekerjaan sederhana bisa diberikan kisaran. Untuk pekerjaan yang perlu pengecekan, estimasi final diberikan setelah teknisi melihat kondisi lapangan.</p>
+        </details>
+        <details>
+          <summary>Apakah melayani kantor dan gedung?</summary>
+          <p>Bisa. Kami dapat menyiapkan jadwal survey dan kontrak maintenance berkala.</p>
+        </details>
+        <details>
+          <summary>Apakah teknisi AC bisa daftar sebagai partner?</summary>
+          <p>Bisa. Teknisi AC dapat mendaftar melalui tombol Daftar Partner, mencantumkan domisili, area kerja, keahlian AC dan pengalaman. Admin pusat akan melakukan verifikasi sebelum menerima order.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <h3>PT KALIMAYA SURYA ALAM</h3>
+        <p>Platform nasional layanan service AC, cuci AC, bongkar pasang AC, freon, sparepart AC dan maintenance AC gedung. Pusat operasional di Tangerang, Banten; layanan dijalankan melalui partner teknisi kota besar Indonesia.</p>
+      </div>
+      <div>
+        <h3>Our Services</h3>
+        <div class="footer-links">
+          <a href="#layanan">Service AC</a>
+          <a href="#layanan">Cuci AC</a>
+          <a href="#layanan">Service AC</a>
+          <a href="#layanan">Bongkar Pasang AC</a>
+        </div>
+      </div>
+      <div>
+        <h3>Company</h3>
+        <div class="footer-links">
+          <a href="#tentang">About Us</a>
+          <a href="#keunggulan">Why Choose Us</a>
+          <a href="#area">Service Area</a>
+          <a href="#booking">Schedule Online</a>
+        </div>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p>📍 Pusat: Tangerang, Banten<br>🌐 Layanan: Kota Besar Indonesia<br>☎ 081296629033<br>💬 WhatsApp: 081296629033<br>Open 24 Hours</p>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/6281296629033?text=Halo%20PT%20KALIMAYA%20SURYA%20ALAM%2C%20saya%20butuh%20bantuan%20teknisi." target="_blank" rel="noopener" aria-label="WhatsApp">☎</a>
+  <div class="bottom-dock">
+    <a href="https://wa.me/6281296629033?text=Halo%20PT%20KALIMAYA%20SURYA%20ALAM%2C%20saya%20ingin%20booking%20layanan." target="_blank" rel="noopener">WhatsApp</a>
+    <a href="tel:081296629033">Call Now</a>
+    <a href="#booking">Schedule</a>
+  </div>
+
+  <script>
+    const navBar = document.getElementById('navBar');
+    document.getElementById('hamb').addEventListener('click', () => navBar.classList.toggle('open'));
+    document.querySelectorAll('.nav-bar a').forEach(a => a.addEventListener('click', () => navBar.classList.remove('open')));
+
+    document.getElementById('bookingForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const nama = document.getElementById('nama').value.trim();
+      const wa = document.getElementById('wa').value.trim();
+      const layanan = document.getElementById('layananSelect').value;
+      const prioritas = document.getElementById('prioritas').value;
+      const kota = document.getElementById('kota').value.trim();
+      const provinsi = document.getElementById('provinsi').value.trim();
+      const alamat = document.getElementById('alamat').value.trim();
+      const keluhan = document.getElementById('keluhan').value.trim();
+      const text =
+        `Halo PT KALIMAYA SURYA ALAM, saya ingin schedule layanan.%0A%0A`+
+        `Nama: ${encodeURIComponent(nama)}%0A`+
+        `WhatsApp: ${encodeURIComponent(wa)}%0A`+
+        `Layanan: ${encodeURIComponent(layanan)}%0A`+
+        `Prioritas: ${encodeURIComponent(prioritas)}%0A`+
+        `Kota/Kabupaten: ${encodeURIComponent(kota)}%0A`+
+        `Provinsi: ${encodeURIComponent(provinsi)}%0A`+
+        `Alamat: ${encodeURIComponent(alamat)}%0A`+
+        `Keluhan: ${encodeURIComponent(keluhan)}`;
+      window.open(`https://wa.me/6281296629033?text=${text}`, '_blank');
+    });
+  </script>
+</body>
+</html>
