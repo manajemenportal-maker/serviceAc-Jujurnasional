@@ -1703,6 +1703,228 @@
       .order-open-btn{width:100%}
     }
 
+  
+    .admin-fab{
+      position:fixed;
+      left:18px;
+      bottom:92px;
+      z-index:130;
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      border:0;
+      background:linear-gradient(145deg,#ff8fbd,#8f2459);
+      color:#fff;
+      font-size:24px;
+      cursor:pointer;
+      box-shadow:0 16px 34px rgba(123,31,75,.32);
+    }
+    .admin-overlay{
+      position:fixed;
+      inset:0;
+      z-index:300;
+      background:rgba(19,35,58,.62);
+      backdrop-filter:blur(8px);
+      padding:24px;
+      overflow:auto;
+    }
+    .admin-shell{
+      width:min(1180px,96vw);
+      margin:0 auto;
+      background:#fff;
+      border-radius:28px;
+      box-shadow:0 30px 80px rgba(0,0,0,.28);
+      overflow:hidden;
+      border:1px solid var(--line);
+    }
+    .admin-head{
+      background:linear-gradient(145deg,#7b1f4b,#d8437f);
+      color:#fff;
+      padding:18px 22px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+    }
+    .admin-head b{
+      display:block;
+      font-size:24px;
+      font-weight:1000;
+    }
+    .admin-head span{
+      font-size:13px;
+      font-weight:800;
+      opacity:.92;
+    }
+    .admin-close{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:0;
+      background:#fff;
+      color:#d8437f;
+      font-size:26px;
+      font-weight:1000;
+      cursor:pointer;
+    }
+    .admin-login{
+      max-width:420px;
+      margin:34px auto;
+      padding:24px;
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:#fff7fb;
+      display:grid;
+      gap:12px;
+      text-align:center;
+    }
+    .admin-login h3{
+      color:var(--blue);
+      margin:0;
+      font-size:26px;
+      font-weight:1000;
+    }
+    .admin-login p,.admin-login small{
+      color:#52697e;
+      font-weight:800;
+      margin:0;
+    }
+    .admin-panel{
+      padding:18px;
+    }
+    .admin-tabs{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:16px;
+      background:#fff7fb;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:8px;
+    }
+    .admin-tab{
+      border:0;
+      background:#fff;
+      color:var(--blue);
+      font-weight:1000;
+      border-radius:999px;
+      padding:10px 15px;
+      cursor:pointer;
+    }
+    .admin-tab.active{
+      background:var(--red);
+      color:#fff;
+    }
+    .admin-content{display:none}
+    .admin-content.active{display:block}
+    .admin-stat-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+    }
+    .admin-stat-grid div{
+      background:#fff7fb;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+    }
+    .admin-stat-grid b{
+      color:var(--red);
+      font-size:30px;
+      display:block;
+      font-weight:1000;
+    }
+    .admin-stat-grid span{
+      color:var(--blue-dark);
+      font-weight:900;
+      font-size:13px;
+    }
+    .admin-note{
+      margin:14px 0;
+      background:#fff7fb;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px;
+      color:#52697e;
+      font-weight:800;
+    }
+    .admin-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:12px 0;
+    }
+    .admin-table-wrap{
+      overflow:auto;
+      border:1px solid var(--line);
+      border-radius:18px;
+    }
+    .admin-table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:820px;
+      background:#fff;
+    }
+    .admin-table th{
+      background:#fff7fb;
+      color:var(--blue);
+      text-align:left;
+      padding:11px;
+      font-size:13px;
+      font-weight:1000;
+      border-bottom:1px solid var(--line);
+    }
+    .admin-table td{
+      padding:10px 11px;
+      border-bottom:1px solid #f4d7e4;
+      color:#34485f;
+      font-size:13px;
+      font-weight:800;
+      vertical-align:top;
+    }
+    .admin-table tbody tr:hover{background:#fff7fb}
+    .admin-pricing-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin:12px 0;
+    }
+    .pricing-card{
+      background:#fff7fb;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px;
+      display:grid;
+      gap:8px;
+    }
+    .pricing-card h4{
+      margin:0;
+      color:var(--blue);
+      font-size:16px;
+      font-weight:1000;
+    }
+    .pricing-card .row-mini{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+    .admin-setting-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+    }
+    .admin-setting-grid div{
+      background:#fff7fb;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px;
+    }
+    @media(max-width:900px){
+      .admin-stat-grid,.admin-pricing-grid,.admin-setting-grid{grid-template-columns:1fr}
+      .admin-overlay{padding:12px}
+      .admin-shell{border-radius:20px}
+    }
+
   </style>
 </head>
 <body>
@@ -2480,6 +2702,115 @@
     </div>
   </footer>
 
+
+  <button class="admin-fab" id="adminFab" type="button" aria-label="Admin">⚙</button>
+
+  <div class="admin-overlay" id="adminOverlay" hidden>
+    <div class="admin-shell">
+      <div class="admin-head">
+        <div>
+          <b>Admin KSA AC</b>
+          <span>Order • Partner • Tarif • Export Data</span>
+        </div>
+        <button class="admin-close" id="adminClose" type="button">×</button>
+      </div>
+
+      <div class="admin-login" id="adminLogin">
+        <h3>Masuk Admin</h3>
+        <p>Masukkan PIN admin untuk membuka panel pengelolaan.</p>
+        <input id="adminPin" type="password" placeholder="PIN Admin" />
+        <button class="btn btn-red" id="adminLoginBtn" type="button">Masuk</button>
+        <small>PIN default: <b>123456</b>. Nanti bisa diganti saat sudah pakai Firebase.</small>
+      </div>
+
+      <div class="admin-panel" id="adminPanel" hidden>
+        <div class="admin-tabs">
+          <button class="admin-tab active" data-admin-tab="dashboard" type="button">Dashboard</button>
+          <button class="admin-tab" data-admin-tab="orders" type="button">Order</button>
+          <button class="admin-tab" data-admin-tab="partners" type="button">Partner</button>
+          <button class="admin-tab" data-admin-tab="pricing" type="button">Tarif</button>
+          <button class="admin-tab" data-admin-tab="settings" type="button">Setting</button>
+        </div>
+
+        <div class="admin-content active" id="admin-dashboard">
+          <div class="admin-stat-grid">
+            <div><b id="adminTotalOrders">0</b><span>Total Order Lokal</span></div>
+            <div><b id="adminTotalPartners">0</b><span>Partner Terdaftar</span></div>
+            <div><b id="adminTotalRevenue">Rp 0</b><span>Total Estimasi Order</span></div>
+            <div><b id="adminCityCount">0</b><span>Kota Terdata</span></div>
+          </div>
+          <div class="admin-note">
+            <b>Catatan sistem:</b>
+            Data saat ini tersimpan di browser/localStorage. Untuk operasional nasional yang benar-benar online, panel ini siap disambungkan ke Firebase Firestore agar order dan partner masuk ke database pusat.
+          </div>
+        </div>
+
+        <div class="admin-content" id="admin-orders">
+          <div class="admin-actions">
+            <button class="btn btn-blue" id="refreshOrdersBtn" type="button">Refresh Order</button>
+            <button class="btn btn-red" id="exportOrdersBtn" type="button">Export Order CSV</button>
+            <button class="btn btn-blue" id="clearOrdersBtn" type="button">Hapus Data Order Lokal</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table" id="ordersTable">
+              <thead><tr><th>Tanggal</th><th>Nama</th><th>Kota</th><th>Pekerjaan</th><th>Unit</th><th>Estimasi</th><th>Status</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-content" id="admin-partners">
+          <div class="admin-actions">
+            <button class="btn btn-blue" id="refreshPartnersBtn" type="button">Refresh Partner</button>
+            <button class="btn btn-red" id="exportPartnersBtn" type="button">Export Partner CSV</button>
+            <button class="btn btn-blue" id="clearPartnersBtn" type="button">Hapus Data Partner Lokal</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table" id="partnersTable">
+              <thead><tr><th>Tanggal</th><th>Nama</th><th>WA</th><th>Kota</th><th>Kompetensi</th><th>Pengalaman</th><th>Kesiapan</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-content" id="admin-pricing">
+          <div class="admin-note">Ubah tarif dasar estimasi order. Perubahan tersimpan di browser dan langsung dipakai form Order Online.</div>
+          <div class="admin-pricing-grid" id="adminPricingGrid"></div>
+          <div class="admin-actions">
+            <button class="btn btn-red" id="savePricingBtn" type="button">Simpan Tarif</button>
+            <button class="btn btn-blue" id="resetPricingBtn" type="button">Reset Tarif Default</button>
+          </div>
+        </div>
+
+        <div class="admin-content" id="admin-settings">
+          <div class="admin-setting-grid">
+            <div>
+              <label>Nomor WhatsApp Operator</label>
+              <input id="adminWaNumber" placeholder="6281296629033" />
+            </div>
+            <div>
+              <label>PIN Admin Baru</label>
+              <input id="adminNewPin" type="password" placeholder="Kosongkan jika tidak diganti" />
+            </div>
+            <div>
+              <label>Nama Brand</label>
+              <input id="adminBrandName" placeholder="PT KALIMAYA SURYA ALAM" />
+            </div>
+            <div>
+              <label>Catatan Refund</label>
+              <input id="adminRefundNote" placeholder="Refund dipotong 50% untuk pembatalan darurat" />
+            </div>
+          </div>
+          <div class="admin-actions">
+            <button class="btn btn-red" id="saveSettingsBtn" type="button">Simpan Setting</button>
+            <button class="btn btn-blue" id="adminLogoutBtn" type="button">Logout Admin</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <a class="wa-float" href="https://wa.me/6281296629033?text=Halo%20PT%20KALIMAYA%20SURYA%20ALAM%2C%20saya%20butuh%20bantuan%20teknisi." target="_blank" rel="noopener" aria-label="WhatsApp">☎</a>
   <div class="bottom-dock">
     <a href="https://wa.me/6281296629033?text=Halo%20PT%20KALIMAYA%20SURYA%20ALAM%2C%20saya%20ingin%20booking%20layanan." target="_blank" rel="noopener">WhatsApp</a>
@@ -2674,6 +3005,19 @@
       maintenance: {label:'Maintenance AC Gedung / Banyak Unit', base:250000, perUnit:65000, note:'Estimasi awal untuk banyak unit. Dapat dibuat paket kontrak.'},
       hemat_listrik: {label:'Konsultasi Hemat Listrik AC 30-50%', base:0, perUnit:0, note:'Konsultasi awal gratis. Survey/audit lanjutan berdasarkan lokasi.'}
     };
+
+    try{
+      const adminPricingSaved = JSON.parse(localStorage.getItem('ksa_pricing_ac') || 'null');
+      if(adminPricingSaved){
+        Object.keys(adminPricingSaved).forEach(k => {
+          if(servicePricing[k]){
+            servicePricing[k].base = Number(adminPricingSaved[k].base || servicePricing[k].base);
+            servicePricing[k].perUnit = Number(adminPricingSaved[k].perUnit || servicePricing[k].perUnit);
+          }
+        });
+      }
+    }catch(e){}
+
     const priorityPricing = {
       normal: {label:'Normal - Order', fee:0},
       urgent: {label:'Urgent - Hari ini', fee:75000},
@@ -2775,6 +3119,26 @@
           alert('Customer wajib menyetujui estimasi awal, pembayaran 100% di muka, dan ketentuan pembatalan/refund.');
           return;
         }
+
+        const orderRecord = {
+          tanggal: new Date().toLocaleString('id-ID'),
+          nama, whatsapp: wa, kota, provinsi, alamat,
+          pekerjaan: est.labels.join(', '),
+          prioritas: est.priority.label,
+          jumlah_unit: est.qty,
+          kapasitas: est.pk.label,
+          keluhan,
+          biaya_layanan: est.biayaLayanan,
+          biaya_prioritas: est.biayaPrioritas,
+          biaya_kapasitas: est.biayaPk,
+          admin_platform: est.biayaAdmin,
+          total_estimasi: est.total,
+          status: 'Menunggu pembayaran 100%'
+        };
+        const orderRows = JSON.parse(localStorage.getItem('ksa_orders_ac') || '[]');
+        orderRows.push(orderRecord);
+        localStorage.setItem('ksa_orders_ac', JSON.stringify(orderRows));
+
         const msg =
           `Halo PT KALIMAYA SURYA ALAM, saya ingin membuat order service AC.%0A%0A`+
           `Nama: ${encodeURIComponent(nama)}%0A`+
@@ -2829,6 +3193,182 @@
         setTimeout(openOrderFormBox, 260);
       });
     });
+
+
+    const adminDefaultPin = '123456';
+    function adminGetPin(){ return localStorage.getItem('ksa_admin_pin') || adminDefaultPin; }
+    function adminRp(n){ return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n)||0); }
+    function adminRows(key){ try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []} }
+    function adminDownloadCsv(filename, rows){
+      if(!rows.length){ alert('Data masih kosong.'); return; }
+      const headers = Object.keys(rows[0]);
+      const csv = [headers.join(',')].concat(rows.map(r => headers.map(h => '"' + String(r[h]??'').replaceAll('"','""') + '"').join(','))).join('\n');
+      const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
+    function adminOpen(){
+      const overlay = document.getElementById('adminOverlay');
+      if(overlay) overlay.hidden = false;
+      adminRefreshAll();
+    }
+    function adminClose(){
+      const overlay = document.getElementById('adminOverlay');
+      if(overlay) overlay.hidden = true;
+    }
+    const adminFab = document.getElementById('adminFab');
+    if(adminFab) adminFab.addEventListener('click', adminOpen);
+    const adminCloseBtn = document.getElementById('adminClose');
+    if(adminCloseBtn) adminCloseBtn.addEventListener('click', adminClose);
+
+    const adminLoginBtn = document.getElementById('adminLoginBtn');
+    if(adminLoginBtn){
+      adminLoginBtn.addEventListener('click', () => {
+        const pin = document.getElementById('adminPin').value;
+        if(pin === adminGetPin()){
+          document.getElementById('adminLogin').hidden = true;
+          document.getElementById('adminPanel').hidden = false;
+          adminRefreshAll();
+        } else {
+          alert('PIN admin salah.');
+        }
+      });
+    }
+    document.querySelectorAll('.admin-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.admin-tab').forEach(x => x.classList.remove('active'));
+        document.querySelectorAll('.admin-content').forEach(x => x.classList.remove('active'));
+        btn.classList.add('active');
+        const id = 'admin-' + btn.dataset.adminTab;
+        const panel = document.getElementById(id);
+        if(panel) panel.classList.add('active');
+        adminRefreshAll();
+      });
+    });
+
+    function adminRefreshDashboard(){
+      const orders = adminRows('ksa_orders_ac');
+      const partners = adminRows('ksa_partner_teknisi_ac');
+      const totalRevenue = orders.reduce((s,o)=>s + Number(o.total_estimasi||0),0);
+      const cities = new Set(orders.map(o=>String(o.kota||'').toLowerCase()).filter(Boolean));
+      const a = document.getElementById('adminTotalOrders'); if(a) a.textContent = orders.length;
+      const b = document.getElementById('adminTotalPartners'); if(b) b.textContent = partners.length;
+      const c = document.getElementById('adminTotalRevenue'); if(c) c.textContent = adminRp(totalRevenue);
+      const d = document.getElementById('adminCityCount'); if(d) d.textContent = cities.size;
+    }
+    function adminRenderOrders(){
+      const tbody = document.querySelector('#ordersTable tbody');
+      if(!tbody) return;
+      const rows = adminRows('ksa_orders_ac').slice().reverse();
+      tbody.innerHTML = rows.length ? rows.map(o => `
+        <tr>
+          <td>${o.tanggal||''}</td>
+          <td>${o.nama||''}<br><small>${o.whatsapp||''}</small></td>
+          <td>${o.kota||''}<br><small>${o.provinsi||''}</small></td>
+          <td>${o.pekerjaan||''}</td>
+          <td>${o.jumlah_unit||''}<br><small>${o.kapasitas||''}</small></td>
+          <td>${adminRp(o.total_estimasi||0)}</td>
+          <td>${o.status||''}</td>
+        </tr>`).join('') : '<tr><td colspan="7">Belum ada order tersimpan.</td></tr>';
+    }
+    function adminRenderPartners(){
+      const tbody = document.querySelector('#partnersTable tbody');
+      if(!tbody) return;
+      const rows = adminRows('ksa_partner_teknisi_ac').slice().reverse();
+      tbody.innerHTML = rows.length ? rows.map(p => `
+        <tr>
+          <td>${p.tanggal||''}</td>
+          <td>${p.nama||''}</td>
+          <td>${p.whatsapp||''}</td>
+          <td>${p.kota||''}<br><small>${p.provinsi||''}</small></td>
+          <td>${p.kompetensi||''}</td>
+          <td>${p.pengalaman||''}</td>
+          <td>${p.kesiapan||''}</td>
+        </tr>`).join('') : '<tr><td colspan="7">Belum ada partner tersimpan.</td></tr>';
+    }
+
+    const adminDefaultPricing = {
+      survey:{label:'Survey / Diagnosa', base:85000, perUnit:35000},
+      cuci:{label:'Cuci AC Standard', base:100000, perUnit:75000},
+      cuci_besar:{label:'Cuci Besar', base:175000, perUnit:125000},
+      tidak_dingin:{label:'AC Tidak Dingin', base:125000, perUnit:65000},
+      bocor:{label:'AC Bocor', base:125000, perUnit:70000},
+      freon_tambah:{label:'Tambah Freon', base:175000, perUnit:85000},
+      relokasi:{label:'Relokasi AC', base:350000, perUnit:225000},
+      sparepart:{label:'Sparepart AC', base:150000, perUnit:75000},
+      maintenance:{label:'Maintenance Gedung', base:250000, perUnit:65000}
+    };
+    function adminGetPricing(){
+      try{return JSON.parse(localStorage.getItem('ksa_pricing_ac')||'null') || adminDefaultPricing}catch(e){return adminDefaultPricing}
+    }
+    function adminRenderPricing(){
+      const grid = document.getElementById('adminPricingGrid');
+      if(!grid) return;
+      const pricing = adminGetPricing();
+      grid.innerHTML = Object.entries(pricing).map(([key,p]) => `
+        <div class="pricing-card" data-key="${key}">
+          <h4>${p.label}</h4>
+          <div class="row-mini">
+            <div><label>Base</label><input class="price-base" type="number" value="${p.base||0}"></div>
+            <div><label>Per Unit</label><input class="price-unit" type="number" value="${p.perUnit||0}"></div>
+          </div>
+        </div>`).join('');
+    }
+    function adminSavePricing(){
+      const current = adminGetPricing();
+      document.querySelectorAll('.pricing-card').forEach(card => {
+        const key = card.dataset.key;
+        current[key].base = Number(card.querySelector('.price-base').value||0);
+        current[key].perUnit = Number(card.querySelector('.price-unit').value||0);
+      });
+      localStorage.setItem('ksa_pricing_ac', JSON.stringify(current));
+      alert('Tarif admin tersimpan.');
+    }
+
+    function adminLoadSettings(){
+      const wa = document.getElementById('adminWaNumber'); if(wa) wa.value = localStorage.getItem('ksa_operator_wa') || '6281296629033';
+      const brand = document.getElementById('adminBrandName'); if(brand) brand.value = localStorage.getItem('ksa_brand_name') || 'PT KALIMAYA SURYA ALAM';
+      const refund = document.getElementById('adminRefundNote'); if(refund) refund.value = localStorage.getItem('ksa_refund_note') || 'Refund dipotong 50% untuk pembatalan darurat.';
+    }
+    function adminRefreshAll(){
+      adminRefreshDashboard();
+      adminRenderOrders();
+      adminRenderPartners();
+      adminRenderPricing();
+      adminLoadSettings();
+    }
+
+    const refreshOrdersBtn = document.getElementById('refreshOrdersBtn'); if(refreshOrdersBtn) refreshOrdersBtn.addEventListener('click', adminRenderOrders);
+    const refreshPartnersBtn = document.getElementById('refreshPartnersBtn'); if(refreshPartnersBtn) refreshPartnersBtn.addEventListener('click', adminRenderPartners);
+    const exportOrdersBtn = document.getElementById('exportOrdersBtn'); if(exportOrdersBtn) exportOrdersBtn.addEventListener('click', () => adminDownloadCsv('order-ksa-ac.csv', adminRows('ksa_orders_ac')));
+    const exportPartnersBtn = document.getElementById('exportPartnersBtn'); if(exportPartnersBtn) exportPartnersBtn.addEventListener('click', () => adminDownloadCsv('partner-ksa-ac.csv', adminRows('ksa_partner_teknisi_ac')));
+    const clearOrdersBtn = document.getElementById('clearOrdersBtn'); if(clearOrdersBtn) clearOrdersBtn.addEventListener('click', () => { if(confirm('Hapus semua data order lokal?')){ localStorage.removeItem('ksa_orders_ac'); adminRefreshAll(); }});
+    const clearPartnersBtn = document.getElementById('clearPartnersBtn'); if(clearPartnersBtn) clearPartnersBtn.addEventListener('click', () => { if(confirm('Hapus semua data partner lokal?')){ localStorage.removeItem('ksa_partner_teknisi_ac'); adminRefreshAll(); }});
+    const savePricingBtn = document.getElementById('savePricingBtn'); if(savePricingBtn) savePricingBtn.addEventListener('click', adminSavePricing);
+    const resetPricingBtn = document.getElementById('resetPricingBtn'); if(resetPricingBtn) resetPricingBtn.addEventListener('click', () => { localStorage.removeItem('ksa_pricing_ac'); adminRenderPricing(); });
+    const saveSettingsBtn = document.getElementById('saveSettingsBtn');
+    if(saveSettingsBtn){
+      saveSettingsBtn.addEventListener('click', () => {
+        const wa = document.getElementById('adminWaNumber').value.trim();
+        const pin = document.getElementById('adminNewPin').value.trim();
+        const brand = document.getElementById('adminBrandName').value.trim();
+        const refund = document.getElementById('adminRefundNote').value.trim();
+        if(wa) localStorage.setItem('ksa_operator_wa', wa);
+        if(pin) localStorage.setItem('ksa_admin_pin', pin);
+        if(brand) localStorage.setItem('ksa_brand_name', brand);
+        if(refund) localStorage.setItem('ksa_refund_note', refund);
+        alert('Setting admin tersimpan.');
+      });
+    }
+    const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+    if(adminLogoutBtn){
+      adminLogoutBtn.addEventListener('click', () => {
+        document.getElementById('adminPanel').hidden = true;
+        document.getElementById('adminLogin').hidden = false;
+        document.getElementById('adminPin').value = '';
+      });
+    }
 
   </script>
 </body>
