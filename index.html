@@ -1271,6 +1271,65 @@
       .form-actions .btn{width:100%}
     }
 
+  
+    .partner-cta-box{
+      margin-top:18px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:18px;
+      box-shadow:0 12px 28px rgba(216,67,127,.09);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .partner-cta-box b{
+      display:block;
+      color:var(--blue);
+      font-size:20px;
+      font-weight:1000;
+      margin-bottom:3px;
+    }
+    .partner-cta-box span{
+      color:#52697e;
+      font-weight:700;
+      font-size:14px;
+    }
+    .hidden-form{display:none!important;}
+    .partner-form-box.show-form{
+      display:grid!important;
+      margin-top:18px;
+      animation:fadeDown .25s ease both;
+    }
+    .form-headline{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      background:#fff7fb;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:12px;
+      margin-bottom:4px;
+    }
+    .form-headline h3{margin:0!important;}
+    .small-btn{
+      min-height:38px!important;
+      padding:8px 13px!important;
+      font-size:13px!important;
+    }
+    @keyframes fadeDown{
+      from{opacity:0;transform:translateY(-8px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    @media(max-width:760px){
+      .partner-cta-box{display:grid;text-align:center}
+      .partner-cta-box .btn{width:100%}
+      .form-headline{display:grid}
+      .form-headline .btn{width:100%}
+    }
+
   </style>
 </head>
 <body>
@@ -1676,11 +1735,60 @@
         <div class="section-title">
           <img src="assets/ksa-ac-logo-icon.png" alt="KSA AC Partner" class="partner-logo-badge" />
           <span class="small">Join Partner</span>
-          <h2>Form Pendaftaran Partner Teknisi AC Wilayah</h2>
-          <p>Teknisi AC dapat mendaftar sesuai domisili dan kompetensi. Data ini dipakai operator pusat PT KALIMAYA SURYA ALAM untuk mencocokkan order dengan partner teknisi berdasarkan kota, area kerja, keahlian dan kesiapan layanan.</p>
+          <h2>Daftar sebagai Partner Teknisi AC Wilayah</h2>
+          <p>Teknisi AC dapat bergabung sebagai partner PT KALIMAYA SURYA ALAM sesuai domisili. Order akan diarahkan berdasarkan kota, area kerja, kompetensi, pengalaman, dan kesiapan menerima pekerjaan.</p>
         </div>
 
-        <div class="partner-form-box">
+        <div class="service-grid partner-intro" id="partnerIntro">
+          <article class="service-card">
+            <div>
+              <div class="icon-round">📝</div>
+              <h3>1. Daftar Domisili</h3>
+              <p>Partner mengisi data diri, nomor WhatsApp, kota/kabupaten, provinsi, area kerja dan radius layanan.</p>
+            </div>
+            <ul class="check-list">
+              <li>Nama & kontak aktif</li>
+              <li>Kota domisili</li>
+              <li>Area kerja teknisi</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="icon-round">🧰</div>
+              <h3>2. Isi Kompetensi AC</h3>
+              <p>Teknisi memilih kemampuan yang dikuasai, seperti cuci AC, service AC, freon, bongkar pasang, sparepart, inverter, cassette, dan maintenance gedung.</p>
+            </div>
+            <ul class="check-list">
+              <li>Kompetensi teknis</li>
+              <li>Pengalaman kerja</li>
+              <li>Alat kerja tersedia</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="icon-round">✅</div>
+              <h3>3. Verifikasi Admin</h3>
+              <p>Admin pusat PT KSA mengecek data partner sebelum teknisi dimasukkan ke jaringan order wilayah.</p>
+            </div>
+            <ul class="check-list">
+              <li>Data diverifikasi</li>
+              <li>Wilayah dicocokkan</li>
+              <li>Siap menerima order</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="partner-cta-box">
+          <div>
+            <b>Siap bergabung sebagai partner teknisi AC?</b>
+            <span>Form lengkap hanya ditampilkan setelah tombol diklik, supaya halaman tetap rapi dan tidak terlalu panjang.</span>
+          </div>
+          <button class="btn btn-red" type="button" id="openPartnerForm">Buka Form Pendaftaran Teknisi</button>
+        </div>
+
+        <div class="partner-form-box hidden-form" id="partnerFormBox">
           <div class="partner-info">
             <h3>Yang perlu disiapkan</h3>
             <ul class="check-list">
@@ -1695,6 +1803,11 @@
           </div>
 
           <form class="partner-form" id="partnerForm">
+            <div class="form-headline">
+              <h3>Form Data Partner Teknisi AC</h3>
+              <button class="btn btn-blue small-btn" type="button" id="closePartnerForm">Tutup Form</button>
+            </div>
+
             <h3>Data Diri Partner</h3>
             <div class="row">
               <div>
@@ -1910,6 +2023,27 @@
         `Keluhan: ${encodeURIComponent(keluhan)}`;
       window.open(`https://wa.me/6281296629033?text=${text}`, '_blank');
     });
+
+
+    const openPartnerForm = document.getElementById('openPartnerForm');
+    const closePartnerForm = document.getElementById('closePartnerForm');
+    const partnerFormBox = document.getElementById('partnerFormBox');
+    if(openPartnerForm && partnerFormBox){
+      openPartnerForm.addEventListener('click', function(){
+        partnerFormBox.classList.remove('hidden-form');
+        partnerFormBox.classList.add('show-form');
+        openPartnerForm.textContent = 'Form Pendaftaran Terbuka';
+        partnerFormBox.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    }
+    if(closePartnerForm && partnerFormBox && openPartnerForm){
+      closePartnerForm.addEventListener('click', function(){
+        partnerFormBox.classList.add('hidden-form');
+        partnerFormBox.classList.remove('show-form');
+        openPartnerForm.textContent = 'Buka Form Pendaftaran Teknisi';
+        document.getElementById('partner').scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    }
 
     const partnerStorageKey = 'ksa_partner_teknisi_ac';
     function getPartnerRows(){
