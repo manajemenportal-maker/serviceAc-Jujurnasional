@@ -1448,6 +1448,48 @@
         inset 0 -8px 14px rgba(80,10,45,.22)!important;
     }
 
+  
+    .calculator-hidden{
+      display:none!important;
+    }
+    #kalkulator-hemat.calculator-show{
+      display:block!important;
+      animation:fadeDown .25s ease both;
+    }
+    .calculator-title{
+      display:flex!important;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:18px;
+      text-align:left!important;
+      max-width:none!important;
+    }
+    .calculator-title > div{
+      max-width:820px;
+    }
+    .calc-report.calculated{
+      outline:4px solid rgba(255,143,189,.22);
+    }
+    .print-hint{
+      background:#fff7fb;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px 12px;
+      color:var(--blue-dark);
+      font-weight:900;
+      margin:10px 0;
+      font-size:13px;
+    }
+    @media(max-width:760px){
+      .calculator-title{
+        display:grid!important;
+        text-align:center!important;
+      }
+      .calculator-title .btn{
+        width:100%;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1843,18 +1885,21 @@
         <p class="saving-note">*Angka 30–50% adalah target/potensi penghematan dan tetap bergantung pada kapasitas AC, durasi pemakaian, kondisi unit, suhu ruangan, kebiasaan operasional dan hasil audit lapangan.</p>
 
         <div style="text-align:center;margin-top:22px">
-          <button class="btn btn-yellow" type="button" onclick="document.getElementById('kalkulator-hemat').scrollIntoView({behavior:'smooth',block:'start'})">⚡ Hitung Potensi Hemat Sekarang</button>
+          <button class="btn btn-yellow" type="button" id="openSavingCalculator">⚡ Hitung Potensi Hemat Sekarang</button>
         </div>
       </div>
     </section>
 
 
-    <section class="booking" id="kalkulator-hemat">
+    <section class="booking calculator-hidden" id="kalkulator-hemat">
       <div class="wrap">
-        <div class="section-title">
-          <span class="small">Self Assessment</span>
-          <h2>Kalkulator Estimasi Penghematan AC</h2>
-          <p>Isi parameter dasar untuk menghitung estimasi tagihan normal, potensi hemat 30–50%, pembagian manfaat, akumulasi 36 bulan, dan BEP proyek. Hitungan ini mengikuti struktur self-assessment Kalimaja Xtron.</p>
+        <div class="section-title calculator-title">
+          <div>
+            <span class="small">Self Assessment</span>
+            <h2>Kalkulator Estimasi Penghematan AC</h2>
+            <p>Isi parameter dasar untuk menghitung estimasi tagihan normal, potensi hemat 30–50%, pembagian manfaat, akumulasi 36 bulan, dan BEP proyek. Hitungan ini mengikuti struktur self-assessment Kalimaja Xtron.</p>
+          </div>
+          <button class="btn btn-blue small-btn" type="button" id="closeSavingCalculatorTop">Tutup Kalkulator</button>
         </div>
         <div class="calculator-box">
           <div class="calc-panel">
@@ -1874,8 +1919,10 @@
             <div class="report-for"><b>Disusun Untuk:</b><span id="rNama">-</span><small id="rPic">-</small></div>
             <div class="report-grid"><div><b id="rUnit">0 Unit</b><span>Total Unit AC</span></div><div><b id="rOperasi">0 Jam / 0 Hari</b><span>Operasional</span></div><div><b id="rNormal">Rp 0</b><span>Tagihan Normal / Bulan</span></div><div><b id="rHemat">Rp 0</b><span>Potensi Hemat / Bulan</span></div><div><b id="rKlien">Rp 0</b><span>Manfaat Klien / Bulan</span></div><div><b id="rOperator">Rp 0</b><span>Revenue Operator / Bulan</span></div></div>
             <div class="report-total"><div><span>Total Penghematan 36 Bulan</span><b id="rHemat36">Rp 0</b></div><div><span>Total Manfaat Klien 36 Bulan</span><b id="rKlien36">Rp 0</b></div><div><span>Nilai Investasi Alat</span><b id="rCapex">Rp 0</b><small>100% ditanggung operator / Zero CAPEX untuk klien</small></div><div><span>Payback / BEP</span><b id="rBep">0 Bulan</b><small>Berdasarkan total potensi hemat bulanan</small></div><div><span>Project ROI 36 Bulan</span><b id="rRoi">0%</b></div><div><span>Estimasi IRR Acuan</span><b id="rIrr">0%</b><small>Acuan sederhana: ROI tahunan rata-rata</small></div></div>
+            <div class="print-hint" id="printHint" hidden>Hasil sudah dihitung. Silakan klik <b>Cetak PDF / Simpan PDF</b>, lalu pilih “Save as PDF” pada jendela cetak.</div>
+
             <p class="saving-note dark">Catatan: estimasi bergantung pada kondisi AC, daya aktual, jam operasi, suhu ruangan, tarif listrik, pola pemakaian, dan hasil audit lapangan.</p>
-            <div class="form-actions"><button class="btn btn-blue" type="button" id="printCalcBtn">Cetak / Simpan PDF</button><button class="btn btn-red" type="button" id="resetCalcBtn">Reset Hitungan</button></div>
+            <div class="form-actions"><button class="btn btn-blue" type="button" id="printCalcBtn">Cetak PDF / Simpan PDF</button><button class="btn btn-red" type="button" id="resetCalcBtn">Reset Hitungan</button></div>
           </div>
         </div>
       </div>
@@ -2298,6 +2345,35 @@
           if(partner) partner.scrollIntoView({behavior:'smooth', block:'start'});
         }
       });
+    }
+
+
+    function openSavingCalc(){
+      const calc = document.getElementById('kalkulator-hemat');
+      if(!calc) return;
+      calc.classList.remove('calculator-hidden');
+      calc.classList.add('calculator-show');
+      calc.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    function closeSavingCalc(){
+      const calc = document.getElementById('kalkulator-hemat');
+      if(!calc) return;
+      calc.classList.add('calculator-hidden');
+      calc.classList.remove('calculator-show');
+      const trigger = document.getElementById('hemat-listrik') || document.getElementById('openSavingCalculator');
+      if(trigger) trigger.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    const openSavingCalculator = document.getElementById('openSavingCalculator');
+    if(openSavingCalculator){
+      openSavingCalculator.addEventListener('click', openSavingCalc);
+    }
+    const closeSavingCalculatorTop = document.getElementById('closeSavingCalculatorTop');
+    if(closeSavingCalculatorTop){
+      closeSavingCalculatorTop.addEventListener('click', closeSavingCalc);
+    }
+    const closeSavingCalculatorBottom = document.getElementById('closeSavingCalculatorBottom');
+    if(closeSavingCalculatorBottom){
+      closeSavingCalculatorBottom.addEventListener('click', closeSavingCalc);
     }
 
   </script>
